@@ -1,0 +1,22 @@
+{% extends "base/base.twig" %}
+
+{% block content %}
+  {% do action('woocommerce_before_main_content') %}
+  <h1 class="main__heading">
+    {{ title }}
+  </h1>
+
+  {% do action('woocommerce_before_shop_loop') %}
+
+  <div class="main__content">
+    {% for post in products %}
+      {% if post.post_status != 'private'%}
+        {% include ["woo/product-teaser.twig"] %}
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% do action('woocommerce_after_shop_loop') %}
+  {% do action('woocommerce_after_main_content') %}
+{% endblock %}
+
+{% block content %}

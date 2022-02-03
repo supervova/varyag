@@ -1,0 +1,90 @@
+.input__control.is-touched:not(.is-textarea),
+.has-been-validated .input__control:not(.is-textarea),
+.input.has-error .input__control:not(.is-textarea),
+.input.is-correct .input__control:not(.is-textarea) {
+  background-position: right $size-1 center;
+  background-repeat: no-repeat;
+}
+
+.input__control.is-textarea.is-touched,
+.has-been-validated .input__control.is-textarea,
+.input.has-error .input__control.is-textarea,
+.input.is-correct .input__control.is-textarea {
+  background-position: right $size-1 top .9rem;
+  background-repeat: no-repeat;
+}
+
+// -----------------------------------------------------------------------------
+// VALID INPUTS
+// -----------------------------------------------------------------------------
+
+.input__control.is-touched:not(:focus):not(:invalid),
+.has-been-validated .input__control:not(:focus):not(:invalid),
+.input.is-correct .input__control:not(:focus) {
+  background-image: var(--asset-data-image-success);
+}
+
+// -----------------------------------------------------------------------------
+// INVALID INPUTS
+// -----------------------------------------------------------------------------
+
+/* stylelint-disable selector-max-compound-selectors */
+// .input__control.is-invalid, // server-side validated
+.input__control.is-touched:not(:focus):invalid,
+.has-been-validated .input__control:not(:focus):invalid,
+.input.has-error .input__control:not(:focus):invalid {
+  background-image: var(--asset-data-image-error);
+  border-color: $color-ink-error-border;
+  box-shadow: inset 0 0 0 1px $color-ink-error-border;
+
+  // Show alert
+  + .input__alert,
+  + .input__hint + .input__alert {
+    opacity: 1;
+    height: auto;
+  }
+
+  // And hide hint
+  + .input__hint {
+    display: none;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// ERROR MESSAGES
+// -----------------------------------------------------------------------------
+
+.input__alert {
+  color: $color-ink-error-text;
+  font-size: var(--font-size-small);
+  line-height: var(--font-line-height-small);
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity ($motion-duration-base * 3);
+  height: 0;
+}
+
+// To hide message using height: 0 we should wrap it in another div and delegate
+// paddings to it
+.input__alert > div {
+  padding-top: var(--size-padding-top-small);
+  padding-bottom: .4rem;
+}
+
+// Show front-end validation alert for form rows
+// .input
+//   .row.has-error
+//     .input__control
+//     .input__control
+//   .input__alert
+.row.has-error + .input__alert {
+  opacity: 1;
+  height: auto;
+}
+
+// ALERT UNDER THE CHECKBOXES
+/* stylelint-disable selector-no-qualifying-type */
+.has-been-validated input[type='checkbox']:not(:focus):invalid + label + .input__alert {
+  display: block;
+}
+

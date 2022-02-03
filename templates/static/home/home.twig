@@ -1,0 +1,425 @@
+{% extends "base/base.twig" %}
+
+{% block config %}
+  {{ parent() }}
+
+  {% set post = {
+    is_home: true,
+    is_wp: false,
+    is_modal: false,
+    title: site.name,
+    description: site.description,
+    link: site.url,
+    image: global.logo,
+    body_classes: 'is-home'
+  } %}
+{% endblock %}
+
+{# MAIN CONTENT ------------------------------------------------------------- #}
+{% block content %}
+
+
+  <section class="hero atropos">
+    <div class="atropos-scale">
+      <div class="atropos-rotate">
+        <div class="atropos-inner">
+
+          <div class="hero__content">
+
+            <h2 class="hero__heading">Наверх, вы, товарищи, все по&nbsp;местам!</h2>
+            <p class="hero__subhead">Сражайтесь в&nbsp;настольной игре по&nbsp;мотивам бессмертного подвига русских моряков</p>
+
+            <div class="hero__cta buttons">
+              <a class="btn is-primary" href="#section-play">Ознакомиться</a>
+              <a class="btn is-2ry" href="#section-products">Заказать</a>
+            </div>
+
+            <ul class="hero__kpis kpis">
+              <li class="kpi">
+                <strong class="kpi__value">2</strong>
+                <small class="kpi__caption">игрока</small>
+              </li>
+              <li class="kpi">
+                <strong class="kpi__value">7+</strong>
+                <small class="kpi__caption">от семи лет</small>
+              </li>
+              <li class="kpi">
+                {% include "base/icon.twig" with {name: "lg-time"} %}
+                <small class="kpi__caption">
+                  <span class="d-none d-sm-inline">игра</span>
+                  30-50 мин
+                </small>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="lead" id="section-play">
+    <strong>Настольная игра &laquo;Варяг&raquo;</strong>. Основная тема&nbsp;— история российского флота. Сюжет игры рассказывает о&nbsp;великих моряках, бессмертных подвигах и&nbsp;победах, о&nbsp;событиях мировой истории, которые повлияли на&nbsp;судьбу нашей страны.
+  </p>
+
+  {# HOW-TO #}
+  <section class="section is-odd">
+    <div class="container">
+      <div class="grid is-lg">
+
+        <div class="section__copy">
+          {% include "base/icon.twig" with {name: "xl-game", class: "is-xl"} %}
+          <h2 class="section__heading">Как играть</h2>
+          <p>Игроки маневрируют кораблями на&nbsp;карте и&nbsp;выбирают наиболее выгодную позицию для атаки. Атакуя, игрок бросает шестигранный кубик. В&nbsp;зависимости от&nbsp;результата определяется степень &laquo;попадания&raquo; (попадание всем залпом&nbsp;/ попадание половиной залпа&nbsp;/ промах).</p>
+          <ol class="list is-top">
+            <li>Арсенал игроков не&nbsp;бесконечен. Пополнить боезапас можно только при попадании на&nbsp;специальные клетки.</li>
+            <li>У&nbsp;игроков есть береговые батареи, которые усложняют задачу нападающему и&nbsp;помогают укрыться от&nbsp;погони.</li>
+            <li>В&nbsp;начале игры игроки имеют возможность скрытно поставить на&nbsp;своей территории мины, которые также усложняют задачу противника.</li>
+          </ol>
+          <div class="section__cta">
+            <button class="section__cta-link" type="button" data-bs-toggle="modal" data-bs-target="#modal-how-to">
+              {% include "base/icon.twig" with {name: "more"} %}
+              Подробнее
+            </button>
+            <button class="section__cta-link" type="button" data-bs-toggle="modal" data-bs-target="#modal-video-tutorial">
+              {% include "base/icon.twig" with {name: "brand-youtube"} %}
+              Видео
+            </button>
+            <a class="section__cta-link" href="" download>
+              {% include "base/icon.twig" with {name: "download"} %}
+              Правила
+            </a>
+          </div>
+        </div>
+
+        <figure class="section__image"><img class="img is-aged" src="{{ site.theme.link }}/images/pages/home/family.jpg" alt="Настольная игра «Варяг»"></figure>
+
+      </div>
+    </div>
+  </section>
+
+  {# KIT #}
+  <section class="section is-even" id="section-kit">
+    <div class="container">
+      <div class="grid is-lg">
+        <div class="section__copy">
+          {% include "base/icon.twig" with {name: "xl-kit", class: "is-xl"} %}
+          <h2 class="section__heading">Что в&nbsp;комплекте</h2>
+          <ul>
+            <li>Коробка.</li>
+            <li>Составное игровое поле&nbsp;&mdash; <b>9</b>&nbsp;сегментов.</li>
+            <li>Фигурки. Две эскадры противников <b>по&nbsp;7</b>&nbsp;судов. <b>2</b>&nbsp;фигурки &laquo;Береговая батарея&raquo;. <b>2</b>&nbsp;фигурки &laquo;Арсенал&raquo;.</li>
+            <li>Игровые фишки: <b>250</b> снарядов и&nbsp;<b>40</b>&nbsp;торпед.</li>
+            <li>Игровой кубик.</li>
+            <li><b>2</b>&nbsp;карточки живучести с&nbsp;тактико-техническими характеристиками кораблей эскадры.</li>
+            <li><b>14</b>&nbsp;игровых карт с&nbsp;рисунками реальных кораблей представленных в&nbsp;фигурках и&nbsp;с&nbsp;описанием их&nbsp;роли в&nbsp;истории.</li>
+            <li>Брошюра с&nbsp;правилами.</li>
+            <li>Историческая просветительская брошюра.</li>
+            <li><strong>Настоящий Андреевский флаг.</strong></li>
+          </ul>
+          <button class="section__cta-link" type="button" data-bs-toggle="modal" data-bs-target="#modal-kit">
+            {% include "base/icon.twig" with {name: "more"} %}
+            Подробнее
+          </button>
+        </div>
+        <figure class="section__image"><img class="img is-aged" {{ site.theme.link }}/images/pages/home/game.jpg" alt="Настольная игра «Варяг»"></figure>
+      </div>
+    </div>
+  </section>
+
+  {# ADD-ONS #}
+  <section class="section is-add-ons" id="section-add-ons">
+    <div class="container">
+      <div class="grid is-md">
+
+        <h2 class="section__heading">Дополнения</h2>
+
+        <section class="section__subsection is-1st">
+          {% include "base/icon.twig" with {name: "lg-map", class: "is-lg"} %}
+          <h3 class="section__subsection-heading">Дополнительные игровые поля</h3>
+          <p>Корейский пролив в&nbsp;альтернативной реальности; места других сражений.</p>
+        </section>
+
+        <section class="section__subsection is-2nd">
+          {% include "base/icon.twig" with {name: "lg-ship", class: "is-lg"} %}
+          <h3 class="section__subsection-heading">Дополнительные корабли</h3>
+          <p>Фигурки броненосцев и&nbsp;канонерских лодок, которые могли&nbsp;бы участвовать в&nbsp;битве.</p>
+        </section>
+
+        <section class="section__subsection is-3d">
+          {% include "base/icon.twig" with {name: "lg-ship-2", class: "is-lg"} %}
+          <h3 class="section__subsection-heading">Корабли премиум-класса</h3>
+          <p>Для состоятельных господ. Выточены вручную из&nbsp;дорогих пород дерева.</p>
+        </section>
+
+        <section class="section__subsection is-4th">
+          {% include "base/icon.twig" with {name: "lg-map-2", class: "is-lg"} %}
+          <h3 class="section__subsection-heading">Сувенирные карты</h3>
+          <p>Небольшие произведения полиграфического искусства.</p>
+        </section>
+
+      </div>
+    </div>
+  </section>
+
+  {# PRODUCTS #}
+  <section class="section is-products" id="section-products">
+    <div class="container">
+      <div class="grid is-lg">
+        <h2 class="section__heading">Купить</h2>
+      </div>
+
+      <div class="cards" id="showcase">
+
+        {% include "components/product.twig" with {
+          name: "Игра", slug: "game", price: 4399, class: "is-featured"
+        } %}
+
+        {% include "components/product.twig" with {
+          name: "Крейсер «Варяг»", slug: "varyag", price: 200, old_price: 300
+        } %}
+
+        {% include "components/product.twig" with {
+          name: "Броненосец «Петропавловск»", slug: "petropavlovsk", price: 390
+        } %}
+
+        {% include "components/product.twig" with {
+          name: "Подарочная карта", slug: "gift-map", price: 650
+        } %}
+
+      </div>
+    </div>
+  </section>
+
+  {# MODAL: HOW-TO #}
+  <section class="modal fade" id="modal-how-to" tabindex="-1" aria-labelledby="modal-how-to-title" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal__box tabs">
+
+        <div class="modal__header">
+          <h2 class="modal__heading" id="modal-how-to-title">Как играть</h2>
+          <button class="btn is-close" type="button" data-bs-dismiss="modal" aria-label="Закрыть">
+            {% include "base/icon.twig" with {name: "x-mark"} %}
+          </button>
+          <ul class="tabs__tablist nav" role="tablist">
+            <li role="presentation">
+              <button class="tabs__tab active" id="modal-how-to-base-tab" data-bs-toggle="tab" data-bs-target="#modal-how-to-base" type="button" role="tab" aria-controls="modal-how-to-base" aria-selected="true">Основное</button>
+            </li>
+            <li role="presentation">
+              <button class="tabs__tab" id="modal-how-to-move-tab" data-bs-toggle="tab" data-bs-target="#modal-how-to-move" type="button" role="tab" aria-controls="modal-how-to-move" aria-selected="false">Как ходить</button>
+            </li>
+            <li role="presentation">
+              <button class="tabs__tab" id="modal-how-to-attack-tab" data-bs-toggle="tab" data-bs-target="#modal-how-to-attack" type="button" role="tab" aria-controls="modal-how-to-attack" aria-selected="false">Как атаковать</button>
+            </li>
+          </ul>
+        </div>
+
+        <div class="modal__body">
+
+          <div class="tabs__pane fade show active" id="modal-how-to-base" role="tabpanel" aria-labelledby="modal-how-to-base-tab">
+            <p>Игроки располагают флот на своих базах в определенном порядке (7 кораблей).  Каждый корабль флота имеет свои тактико-технические характеристики: количество ходов, боезапас, живучесть, дальность стрельбы.</p>
+            <p><b>Задача</b> – потопить корабли противника или войти в порт противника.</p>
+            <p>Игроки поочередно маневрирует кораблями эскадры на карте (за один ход можно переместить один корабль) и выбирают наиболее выгодную позицию для атаки противника. Когда дальность выстрела позволяет, то игроки производят атаку. В зависимости от положения собственного корабля на клетке можно увеличивать силу залпа (самый мощный залп – бортовой, потом носовой, далее кормовой).</p>
+            <figure>
+              <span class="border"><img src="{{ site.theme.link }}/images/pages/home/how-to-01.jpg" alt="Игровое поле"></span>
+              <figcaption class="pt-1 pb-0">
+                <ol>
+                  <li>Береговая батарея.</li>
+                  <li>Координаты для минирования (цифры).</li>
+                  <li>Координаты для минирования (буквы).</li>
+                  <li>Расставленная эскадра.</li>
+                </ol>
+              </figcaption>
+            </figure>
+            <p><strong>Атакуя, игрок бросает шестигранный кубик</strong>. На кубике обозначено, попал ли Игрок всем залпом (2 стороны кубика обозначены буквой «П»), половиной залпа (3 стороны кубика обозначены «1/2») или не попал (2 стороны кубика обозначены буквой «Н»).</p>
+            <p><b>Пример</b>. Минный крейсер атакует Броненосец бортовым залпом. Сила бортового залпа Минного крейсера 2 снаряда и 4 торпеды (1 торпеда = 2 снарядам. Итого – 10 снарядов). Живучесть Броненосца – 10  снарядов.  В случае если кубик показал «П» (попал), то Броненосец уничтожен, если «1/2», то его живучесть падает до 5 снарядов и его нужно добивать залпом другого корабля во время своего хода или  этого же, но если у него не закончился боезапас, обозначенный в ТТХ.</p>
+            <ol class="list is-order-accented">
+              <li>Пополнить боезапас можно зайдя на любую обозначенную клетку вокруг Арсенала</li>
+              <li>Для удобства маневрирования в своих водах предусмотрена Береговая батарея. Усложняет задачу нападающему . Помогает укрыться от погони.</li>
+              <li>Возможность поставить 2 мины  на своей территории, попадая на которую, большие корабли (броненосец и крейсера теряют половину живучести и половину хода (до 2-х и 3-х клеток соответственно), остальные корабли погибают сразу). Вначале игры на карточке минирования записываются координаты – клетка, где установлена мина (пример «С, 22», где «С» обозначение фрагмента карты, а «22» номер клетки на этом фрагменте). Запоминается местоположение. Если корабль противника напарывается на эту клетку, то вы показываете карточку минирования.</li>
+            </ol>
+          </div>
+
+          <div class="tabs__pane fade" id="modal-how-to-move" role="tabpanel" aria-labelledby="modal-how-to-move-tab">
+            <p>В ТТХ кораблей указано количество ходов для каждого корабля. Например:</p>
+            <ul class="list is-unstyled">
+              <li>Броненосец – 4 хода;</li>
+              <li>Миноносец – 7 ходов.</li>
+            </ul>
+            <p>Каждый ход – это одна клетка, либо один поворот на 45 градусов.</p>
+            <figure>
+              <figcaption>
+                <b>Пример</b>: ход Миноносца (самый быстрый корабль эскадры)</figcaption>
+              <span class="border"><img src="{{ site.theme.link }}/images/pages/home/how-to-02.png" alt="Ход миноносца"></span>
+            </figure>
+          </div>
+
+          <div class="tabs__pane fade" id="modal-how-to-attack" role="tabpanel" aria-labelledby="modal-how-to-attack-tab">
+            <p><b>Пример</b>. Канонерская лодка собирается атаковать Бронепалубный крейсер. Чтобы его потопить надо необходим залп в 8 снарядов и удача при попадании.</p>
+            <p>Максимальных залп Канонерка может дать с носа (5 снарядов и  1 торпеда = 2 снарядам. Итого 7 снарядов.  При удачном попадании или даже пр половине, крейсер будет сильно поврежден и добить его вторым залпом не составит труда.</p>
+            <p><b>Задача</b> – за выделенное количество ходов подвести канонерку на максимально удобную позицию -  На расстояние 2-х клеток до Крейсера. т.к необходимо задействовать и торпеду, у которой дальность 2 клетки. И встать носом к Крейсеру.</p>
+            <figure>
+              <figcaption>Два варианта атаки</figcaption>
+              <span class="border"><img src="{{ site.theme.link }}/images/pages/home/how-to-03.png" alt="Ход миноносца"></span>
+            </figure>
+            <p>Потом бросаем кубик и считаем попадания. На кубике обозначено, попал ли Игрок всем залпом (2 стороны кубика обозначены буквой «П»), половиной залпа (3 стороны кубика обозначены «1/2») или не попал (2 стороны кубика обозначены буквой «Н»). Можно обозначить цветами (зеленый – попал, желтый – половина залпа, красный - промазал)</p>
+            <p>Помимо этого необходимо продумывать пути отхода. Можно Сделать 2 хода, дать ЗАЛП, а на оставшиеся 2 хода использовать на отход или разворот.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# MODAL: KIT #}
+  {% include "components/modal-header.twig" with {
+    title: "В наборе. Некоторые подробности", slug: "kit", header: true
+  } %}
+    <div class="modal__body">
+      <p><strong>Поле для игры</strong>представляет собой отдельные квадраты с изображением элементов воды и суши. Игроки могут каждый раз собирать поле в разной конфигурации, изменять географические условия и размер поля.</p>
+      <p><strong>Фигурки</strong>. Каждый игрок управляет собственным флотом в составе 7 судов различных классов.</p><img src="{{ site.theme.link }}/images/pages/home/ship-sizes.svg" alt="Эскадра — игровые фигурки">
+      <p><strong>Настоящий Андреевский флаг</strong>. В каждый экземпляр игры вложен кормовой флаг кораблей Российского императорского флота и Военно- морского флота Российской Федерации.</p>
+    </div>
+  {% include "components/modal-footer.twig" %}
+
+  {# MODAL: PRODUCT #}
+  {% include "components/modal-header.twig" with {
+    title: "Настольная игра «Варяг»", slug: "product-game", header: true
+  } %}
+    <div class="modal__body">
+      <img class="mb-2" src="{{ site.theme.link }}/images/components/structure-product/game-banner.jpg" alt="Настольная игра «Варяг»">
+      <p>Главная вещь в нашем магазине — собственно, игра. В ней есть всё, что нужно, чтобы с удовольствием и пользой проводить свободное время. А, если вы захотите разнообразить свой опыт, посмотрите в сопутствующих товарах — наверняка найдёте что-то подходящее.</p>
+    </div>
+    <div class="modal__footer is-sticky">
+      <div class="modal__footer-price">2 490 ₽</div>
+      <div class="modal__buttons">
+        <a class="btn is-outline is-lg" href="#">Добавить к заказу</a>
+        <a class="btn is-primary is-lg" href="#">Купить сразу</a>
+      </div>
+    </div>
+  {% include "components/modal-footer.twig" %}
+
+  {# MODAL: CART & ORDER #}
+  {% include "components/modal-header.twig" with {
+    title: "2 товара:", slug: "order", header: true
+  } %}
+    <div class="modal__body cart">
+      <ul class="cart__items">
+        <li class="cart__item"><img class="cart__image" src="{{ site.theme.link }}/images/products/cart/game.jpg" alt="Настольная игра «Варяг»">
+          <div class="cart__hgroup">
+            <h3 class="cart__title">Настольная игра «Варяг».<small>2 490 ₽</small>
+            </h3>
+            <div class="cart__actions">
+              <div class="cart__stepper stepper">
+                <button class="stepper__button is-decrement btn" type="button">–</button>
+                <input class="stepper__value" type="number" min="1" max="100" step="1" value="1" readonly>
+                <button class="stepper__button is-increment btn" type="button">+</button>
+              </div>
+              <a class="cart__remove" href="javascript:void(0)" role="button">удалить</a>
+            </div>
+          </div>
+        </li>
+        <li class="cart__item"><img class="cart__image" src="{{ site.theme.link }}/images/products/cart/varyag.jpg" alt="Настольная игра «Варяг»">
+          <div class="cart__hgroup">
+            <h3 class="cart__title">Крейсер «Варяг». Премиум.<small>200 ₽</small>
+            </h3>
+            <div class="cart__actions">
+              <div class="cart__stepper stepper">
+                <button class="stepper__button is-decrement btn" type="button">–</button>
+                <input class="stepper__value" type="number" min="1" max="100" step="1" value="1" readonly>
+                <button class="stepper__button is-increment btn" type="button">+</button>
+              </div>
+              <a class="cart__remove" href="javascript:void(0)" role="button">удалить</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <form class="order" action="/">
+        <fieldset class="mb-2">
+          <legend class="sr-only">Контактная информация</legend>
+          <div class="input">
+            <label for="order-full-name">* Ваше имя и фамилия:</label>
+            <input class="input__control" id="order-full-name" name="name" type="text" required>
+          </div>
+          <div class="input">
+            <label for="order-email">* Ваш email:</label>
+            <input class="input__control" id="order-email" name="email" inputmode="email" type="email" required>
+          </div>
+          <div class="input">
+            <label for="order-phone">* Ваш телефон:</label>
+            <input class="input__control" id="order-phone" name="phone" type="tel" inputmode="tel" required placeholder="Например, +7 (916) 123-45-67">
+          </div>
+          <div class="input">
+            <label for="order-address">* Ваш адрес:</label>
+            <input class="input__control" id="order-address" name="address" type="text" required placeholder="Например, Москва, пр-т Вернадского 26 кв. 404">
+          </div>
+          <div class="input">
+            <label for="order-order-comment">Комментарий к заказу:</label>
+            <textarea class="input__control" id="order-order-comment" name="comment"></textarea>
+          </div>
+          <label class="input has-option">
+            <input class="input__option" name="personal-data" type="checkbox" checked>Я согласен на обработку персональных данных
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend class="order__legend">Доставка</legend>
+          <div class="input__options">
+            <label class="input has-option">
+              <input class="input__option" name="delivery" type="radio" value="Самовызов" checked>Самовызов: Москва,  Адмирала Корнилова, вл. 5 (только будни)
+            </label>
+            <label class="input has-option">
+              <input class="input__option" name="delivery" type="radio" value="постамат">Доставка по Москве через постаматы — ориентировочно 300 ₽
+            </label>
+            <label class="input has-option">
+              <input class="input__option" name="delivery" type="radio" value="Москва">Москва в пределах МКАД — 300 ₽
+            </label>
+            <label class="input has-option">
+              <input class="input__option" name="delivery" type="radio" value="Новая Москва">Москва за МКАД — 400 ₽
+            </label>
+            <label class="input has-option">
+              <input class="input__option" name="delivery" type="radio" value="А107">МО, в пределах А107 — 450 ₽
+            </label>
+            <label class="input has-option">
+              <input class="input__option" name="delivery" type="radio" value="А108">МО, в пределах А108 — 550 ₽
+            </label>
+            <label class="input has-option">
+              <input class="input__option" name="delivery" type="radio" value="А108">Другие города — 550 ₽ (уточняйте стоимость при подтверждении заказа)
+            </label>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="modal__footer is-sticky">
+      <div class="modal__footer-price">2 490 ₽</div>
+      <div class="modal__buttons">
+        <a class="btn is-primary is-lg" href="#">Купить</a>
+      </div>
+    </div>
+  {% include "components/modal-footer.twig" %}
+
+  {# MODAL: VIDEO TUTORIAL #}
+  {% include "components/modal-header.twig" with {
+    title: "Видео: обучение игре", slug: "video-tutorial", title_class: "sr-only"
+  } %}
+    <div class="proportional-media is-16x9">
+      <iframe src="https://www.youtube.com/embed/sOggf9dEKUo" allowfullscreen allow="autoplay"></iframe>
+    </div>
+  {% include "components/modal-footer.twig" %}
+
+  {# MODAL: MUSIC VIDEO #}
+  {% include "components/modal-header.twig" with {
+    title: "Видео: песня «Врагу не сдается наш гордый „Варяг“»", slug: "music-video", title_class: "sr-only"
+  } %}
+    <div class="proportional-media is-16x9">
+      <iframe src="https://www.youtube.com/embed/nORRU3De6ug" allowfullscreen allow="autoplay"></iframe>
+    </div>
+  {% include "components/modal-footer.twig" %}
+
+  {# MODAL: EXTERNAL #}
+  <div class="modal fade" id="modal-external" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal__box"></div>
+    </div>
+  </div>
+
+{% endblock %}

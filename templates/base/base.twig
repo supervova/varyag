@@ -1,0 +1,168 @@
+{% block config %}
+  {#
+    Timber / WP vars
+    {{ site.language }}
+    {{ site.name }}
+    {{ site.description }}
+    {{ site.url }}
+    {{ site.theme.link }}
+
+    {{ post.title }}
+    {{ post.excerpt }}
+    {{ post.link }}
+    {{ post.tags }}
+    {{ post.content }}
+    {{ post.thumbnail.src }}
+  #}
+
+  {% if not site %}
+    {% set site = {
+      language: 'ru',
+      name: 'Варяг',
+      description: 'Сайт настольной игры «Варяг». Правила, комплект игры, купить.',
+      url: 'https://varyag-game.ru',
+      theme: {
+        link: '/wp-content/themes/varyag'
+      }
+    } %}
+  {% endif %}
+
+  {% if not global %}
+    {% set global = {
+      full_head: false,
+
+      title: 'Настольная игра «Варяг». Нас много, и мы в тельняшках',
+      logo: '',
+      image: '',
+      icons: {
+        apple_touch: '/images/base/graphics/icon.png',
+        svg: '/images/base/graphics/icon.svg',
+        manifest: '/manifest.json'
+      },
+      color: '#d94141',
+      fonts: {
+        google: 'Roboto:wght@300;400;500',
+        local: [
+          'ColiseumBlackC',
+          'ColiseumLightC'
+        ]
+      },
+
+      rss: false,
+      rss_url: '/feed.xml',
+
+      gtm: false,
+      facebook_cta_like: false,
+      facebook_admins: false,
+      facebook_app_id: false,
+      vk_api: false,
+      apple_app_id: false,
+
+      author: {
+        summary: 'Vladimir Nikishin, www.super-mark.ru',
+        twitter: false,
+      },
+
+      company: 'ООО «Новая игра»',
+      street: '',
+      postal_code: 123,
+      country: '',
+      locality: 'город',
+      region: 'область, община',
+      phone_code: '916',
+      phone: '123-45-67',
+      email: 'info@new-game.ru',
+      area_served: 'RU',
+      opening_hours: 'Mo, Tu, We, Th, Fr 09:00-17:00',
+      price_range: '$100 - $300',
+      latitude: '',
+      longitude: '',
+      map: 'https://google-or-yandex-map-link',
+
+      social: {
+        facebook: 'varyag-game',
+        instagram: 'varyag-game',
+      }
+    } %}
+  {% endif %}
+
+  {% set game = {
+    name: 'Варяг',
+    description: 'Сюжет игры основан на легендарном морском сражении русско-японском войны и подвиге моряков «Варяга» и «Корейца». Игроки маневрируют кораблями на карте и выбирают наиболее выгодную позицию для атаки. Атакуя, игрок бросает шестигранный кубик. В зависимости от результата определяется степень «попадания» (попадание всем залпом / попадание половиной залпа / промах).',
+    minAge: 7,
+    items: [
+      'Коробка',
+      'игровое поле',
+      '2 эскадры противников по 7 судов',
+      '2 фигурки «Береговая батарея»',
+      '2 фигурки «Арсенал»',
+      '250 фишек-снарядов',
+      '40 фишек-торпед',
+      'игровой кубик',
+      '2 карточки живучести',
+      'брошюра с правилами',
+      'историческая просветительская брошюра',
+      '14 игровых карт с рисунками реальных кораблей',
+      'настоящий Андреевский флаг'
+    ],
+    players: 2,
+    price: 1999,
+    url: '/buy',
+    publisher: false
+  } %}
+
+{% endblock %}
+
+<!DOCTYPE html>
+<html {{ site.language_attributes }} prefix="og: http://ogp.me/ns#">
+<head>
+  {% block html_head %}
+    {% include 'base/head.twig' %}
+  </head>
+{% endblock %}
+
+<body
+  class="page{% if post.body_classes %} {{ post.body_classes }}{% endif %}">
+
+  {# Google Tag Manager (noscript) #}
+  {% if global.gtm %}
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ site_details.google_tag_manager }}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  {% endif %}
+
+  {# Timber doesn't allow to set the 2 blocks of the {% same name %} in a template #}
+
+  {# Modal prefix #}
+  {% if post.is_modal %}
+
+    {% include "components/header-min.twig" %}
+    <article class="is-modal-src">
+
+  {# Regular prefix #}
+  {% else %}
+    {% include "components/header.twig" %}
+    <main class="main">
+  {% endif %}
+
+    {% block content %}
+    {% endblock %}
+
+  {# Modal suffix #}
+  {% if post.is_modal %}
+
+    </article>
+    <footer class="footer is-min">
+      <p class="footer-copyright">© Настольная игра «Варяг»</p>
+    </footer>
+
+  {# Regular suffix #}
+  {% else %}
+    </main>
+
+    {% include "components/footer.twig" %}
+
+    {% block body_suffix %}
+      {% include "base/body-suffix.twig" %}
+    {% endblock %}
+  {% endif %}
+</body>
+</html>

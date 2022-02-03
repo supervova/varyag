@@ -1,0 +1,90 @@
+{% block content %}
+  {% if order == true %}
+    {% if status == 'failed' %}
+      {% else %}
+        <h1 class="main__header">
+          Спасибо за покупку!
+        </h1>
+
+        <div class="main__content">
+
+          <p>Мы получили ваш заказ и отправили электронное письмо на адрес {{ email }} с дополнительной информацией.</p>
+
+          <table class="table woocommerce-order-overview">
+            <tr>
+              <td>
+                Номер заказа
+              </td>
+              <td>
+                {{ ordernumber }}
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Дата
+              </td>
+              <td>
+                {{ date }}
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Email:
+              </td>
+              <td>
+                {{ email }}
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Итого
+              </td>
+              <td>
+                {{ total }}
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Способ оплаты
+              </td>
+              <td>
+                {{ payment_method_title }}
+              </td>
+            </tr>
+          </table>
+
+          {% do action('woocommerce_thankyou_'.payment_method, order_id) %}
+          {% do action('woocommerce_thankyou', order_id) %}
+        </div>
+
+      {% else %}
+
+        <h1 class="main__header">
+          Что-то пошло не так
+        </h1>
+
+        <div class="main__content">
+          <p>При оплате заказа произошла ошибка. Попробуйте снова.</p>
+          <a class="btn is-primary" href="{{ payment_url }}">
+            Оплата — ещё одна попытка
+          </a>
+        </div>
+
+    {% endif %}
+
+  {% else %}
+
+    <h1 class="main__header">
+      Спасибо за покупку!
+    </h1>
+
+    <div class="main__content">
+      <p>Мы получили ваш заказ.</p>
+    </div>
+
+  {% endif %}
+{% endblock %}

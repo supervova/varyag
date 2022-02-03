@@ -1,0 +1,84 @@
+{% block content %}
+  <h1 class="main__header">
+    {{ post.title }}
+  </h1>
+
+  <div class="main__content">
+
+    {% do action('woocommerce_before_cart') %}
+
+    <form class="form woocommerce-cart-form" action="{{ action }}" method="post">
+
+      {% do action('woocommerce_before_cart_table') %}
+
+      <table class="cart">
+        <thead>
+          <tr>
+            <th class="product-name" colspan="2">Наименование</th>
+            <th class="product-price text-right">Цена</th>
+            <th class="product-quantity">Кол-во</th>
+            <th class="product-subtotal text-right">Всего</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% do action('woocommerce_before_cart_contents') %}
+
+          {% for product in products %}
+            <tr>
+              <td>
+                <a href="{{ product.url }}">
+                  <img src="{{ product.thumbnail }}" loading="lazy" alt="{{ product.title }}">
+                </a>
+              </td>
+
+              <td>
+                <a href="{{ product.url }}">
+                  <strong>{{ product.title }}</strong>
+                </a>
+              </td>
+
+              <td class="text-right">
+                {{ product.price }}
+              </td>
+
+              <td>
+                {{ product.quantity }}
+                <button class="btn is-cart-action" name="update_cart" type="submit" value="Обновить"></button>
+                <a class="btn is-cart-action is-remove" href="{{ product.delete_permalink }}" data-product_id="{{ product.delete_productid }}" data-product_sku="{{ product.delete_sku }}" aria-label="Удалить товар"></a>
+              </td>
+
+              <td class="text-right">
+                {{ product.total }}
+              </td>
+            </tr>
+
+          {% endfor %}
+
+          {% do action('woocommerce_cart_contents') %}
+
+          <tr>
+            <td colspan="6" class="actions">
+              {% do action('woocommerce_cart_actions') %}
+              {{ nonce }}
+            </td>
+          </tr>
+
+          {% do action('woocommerce_after_cart_contents') %}
+
+        </tbody>
+
+      </table>
+
+      {% do action('woocommerce_after_cart_table') %}
+
+    </form>
+
+  </div>
+
+  <aside class="sidebar" role="complementary">
+    {% do action('woocommerce_cart_collaterals') %}
+  </aside>
+
+  {% do action('woocommerce_after_cart') %}
+{% endblock %}

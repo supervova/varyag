@@ -1,0 +1,24 @@
+<div class="card{% if body_classes %} {{ class }}{% endif %}" itemscope itemtype="https://schema.org/Product">
+  <img
+    class="card__image"
+    src="{{ site.theme.link }}/images/components/structure-product/{{ slug }}.jpg"
+    srcset="
+      {{ site.theme.link }}/images/components/structure-product/{{ slug }}.jpg,
+      {{ site.theme.link }}/images/components/structure-product/{{ slug }}@2x.jpg 2x
+    "
+    alt="Настольная игра «Варяг»" itemprop="image"
+  >
+  <div class="card__copy">
+    <a class="card__wrapper-link" data-bs-toggle="modal" href="#modal-product-{{ slug }}" role="button">
+      <h3 class="card__heading" itemprop="name">{{ name }}</h3>
+    </a>
+    <span class="card__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+      <meta itemprop="availability" content="https://schema.org/InStock">
+      <meta itemprop="priceCurrency" content="RUB">
+      <span itemprop="price">{{ price }} ₽</span>
+      {% if old_price %}
+        <span class="card__price-old" aria-hidden="true">{{ old_price }} ₽</span>
+      {% endif %}
+    </span>
+  </div>
+</div>

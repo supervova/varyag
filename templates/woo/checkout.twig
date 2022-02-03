@@ -1,0 +1,45 @@
+{% block content %}
+
+  <form class="form checkout woocommerce-checkout" name="checkout" action="{{ action }}" method="post" enctype="multipart/form-data">
+    <h1 class="main__header">
+      {{ post.title }}
+    </h1>
+
+    <div class="main__content">
+
+      {% if show_fields == true %}
+        {% do action('woocommerce_checkout_before_customer_details') %}
+
+        <div class="row" id="customer_details">
+          <div class="col">
+            {% do action('woocommerce_checkout_billing') %}
+          </div>
+
+          <div class="col">
+            {% do action('woocommerce_checkout_shipping') %}
+          </div>
+        </div>
+
+        {% do action('woocommerce_checkout_after_customer_details') %}
+
+      {% endif %}
+
+    </div>
+
+    <aside class="sidebar" role="complementary">
+
+      <h3 id="order_review_heading">Ваш заказ</h3>
+
+      {% do action('woocommerce_checkout_before_order_review') %}
+
+      <div class="woocommerce-checkout-review-order" id="order_review">
+        {% do action('woocommerce_checkout_order_review') %}
+      </div>
+
+      {% do action('woocommerce_checkout_after_order_review') %}
+    </aside>
+
+    {% do action('woocommerce_after_checkout_form', checkout) %}
+  </form>
+
+{% endblock %}

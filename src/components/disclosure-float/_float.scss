@@ -1,0 +1,53 @@
+.float,
+%float {
+  background-color: $color-background-base;
+  // BS override
+  border: 0;
+  box-shadow:
+    $layer-box-shadow-contour,
+    $layer-box-shadow-z3;
+  border-radius: $shape-border-radius-base;
+  color: $color-ink-2ry;
+  float: none;
+  text-align: left;
+  list-style: none;
+  margin: 0;
+  padding: 2.2rem $size-2 2.6rem;
+  pointer-events: none;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity $motion-duration-sm;
+  width: $size-width-sm;
+  z-index: $layer-zindex-dropdown;
+
+  @include media-breakpoint-up(sm) {
+    width: $size-width-base;
+  }
+}
+
+.float.is-open,
+.dropup.open .float,
+.dropdown.open .float,
+%float-open {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+// -----------------------------------------------------------------------------
+// PLACEMENT
+// -----------------------------------------------------------------------------
+
+.float.is-dropup,
+%float-dropup {
+  top: auto;
+  bottom: 100%;
+}
+
+.float.is-right,
+%float-right {
+  left: auto;
+  right: 0;
+}
+

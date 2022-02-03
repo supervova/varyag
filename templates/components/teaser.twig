@@ -1,0 +1,33 @@
+{# {% include 'teaser-post' with {'headline': 'h2'} %} #}
+
+{% set headline = 'h3' %}
+
+<li class="teaser">
+  {% block content %}
+    {% if post.thumbnail.src %}
+      <figure class="teaser__figure">
+        <img src="{{ post.thumbnail.src|resize(120, 160) }}" alt="{{ post.title }}">
+      </figure>
+    {% endif %}
+
+    <div class="teaser__copy">
+      <header class="teaser__header">
+        {% if post.terms %}
+          {% if post.terms[1].name %}
+            <span class="teaser__eyebrow">
+              {{ post.terms[1].name }}
+            </span>
+          {% endif %}
+        {# See line 3 #}
+        <{{ headline }} class="teaser__title">
+          <span>{{ post.title }}</span>
+        </{{ headline }}>
+      </header>
+      <p>{{ post.preview.length(20).read_more(false) }}</p>
+      {# <p>{{ post.preview.length(20) }}</p> #}
+      {# m is numeric month with leading zero #}
+      <time datetime="{{ post.post_date|date('c') }}">{{ post.post_date|date('d M Y') }}</time>
+    </div>
+  {% endblock %}
+</li>
+

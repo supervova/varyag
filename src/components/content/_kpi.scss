@@ -1,0 +1,36 @@
+.kpi {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.kpi__value {
+  color: $color-ink-primary-fill;
+  display: block;
+  font-family: $font-family-title;
+  font-size: var(--font-size-hero-title);
+  font-weight: 300;
+  line-height: var(--font-line-height-hero-title);
+  text-align: center;
+  padding-top: var(--size-padding-top-hero-title);
+  padding-bottom: var(--size-padding-bottom-hero-title);
+
+  &.has-units {
+    padding-top: 2.9rem;
+
+    > small {
+      display: block;
+      font-size: 100%;
+      transform: translateY(-.3rem);
+    }
+  }
+}
+
+.kpi__caption {
+  color: $color-ink-2ry;
+  display: block;
+  text-align: center;
+  margin-top: -$size-line;
+  padding-top: var(--size-padding-top-base);
+  padding-bottom: var(--size-padding-bottom-base);
+}

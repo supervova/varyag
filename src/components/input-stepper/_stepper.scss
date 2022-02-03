@@ -1,0 +1,63 @@
+.stepper {
+  border: .1rem solid $color-ink-border;
+  border-radius: $shape-border-radius-sm;
+  display: flex;
+  overflow: hidden;
+  height: $size-5;
+  width: 15.2rem;
+}
+
+.stepper__button {
+  background-color: $color-background-base;
+  color: $color-ink-2ry;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-base);
+  transition: background-color $motion-duration-xs;
+  width: $size-5;
+  height: $size-5 - .2rem;
+
+  &:hover {
+    box-shadow: none;
+    background-color: $color-background-alt;
+    transform: none;
+  }
+
+  &:focus {
+    box-shadow: $layer-box-shadow-focus-outline-compact;
+  }
+
+  &.is-decrement {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: .1rem solid $color-ink-border;
+  }
+
+  &.is-increment {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: .1rem solid $color-ink-border;
+  }
+}
+
+.stepper__value {
+  appearance: textfield;
+  background-color: $color-background-base;
+  border: 0;
+  border-radius: 0;
+  flex: 1;
+  text-align: center;
+
+  &:focus {
+    outline: 0;
+    box-shadow: $layer-box-shadow-focus-outline-compact;
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+}
+

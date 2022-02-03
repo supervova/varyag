@@ -1,0 +1,48 @@
+<footer class="footer">
+  <div class="container">
+    <div class="grid is-md">
+      <figure class="footer__image">
+        <img class="img is-aged" src="{{ site.theme.link }}/images/components/structure-footer/sailors.jpg" alt="Моряки крейсера «Варяг»">
+      </figure>
+      <div class="footer__base">
+        <p class="footer__copy">&copy; {{ "now"|date('Y') }}. {{ global.company }}</p>
+        <a class="footer__phone" href="tel:+7{{ global.phone_code }}{{ global.phone|replace({'-': ''}) }}">
+          <span class="footer__phone-prefix">
+            <span class="d-none d-md-inline">Тел. </span>
+            ({{ global.phone_code }})
+          </span>
+          <span class="footer__phone-base">{{ global.phone }}</span>
+        </a>
+        <p class="footer__social">
+          <a href="https://www.facebook.com/{{ global.facebook }}">
+            {% include "base/icon.twig" with {name: "brand-facebook"} %}
+          </a>
+          <a href="https://www.instagram.com/{{ global.instagram }}">
+            {% include "base/icon.twig" with {name: "brand-instagram"} %}
+          </a>
+        </p>
+        <ul class="footer__links">
+          <li><a href="mailto:{{ global.email }}">{{ global.email }}</a></li>
+          <li><a href="{{ site.theme.link }}/templates/static/legal/delivery-and-payment.html" data-bs-target="#modal-external" data-bs-toggle="modal">Оплата и доставка</a></li>
+          <li><a href="{{ site.theme.link }}/templates/static/legal/terms-and-conditions.html" data-bs-target="#modal-external" data-bs-toggle="modal">Публичная оферта</a></li>
+          <li><a href="{{ site.theme.link }}/templates/static/legal/privacy.html" data-bs-target="#modal-external" data-bs-toggle="modal">Политика конфиденциальности</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__btw">
+        <ul>
+          <li>
+            {% include "base/icon.twig" with {name: "download"} %}
+            <a href="/pdf/russian-protected-cruisers.pdf" download>Краткая история русского броненосного флота</a>
+          </li>
+          <li>
+            {% include "base/icon.twig" with {name: "brand-youtube"} %}
+            <a href="https://www.youtube.com/embed/nORRU3De6ug" data-bs-toggle="modal" data-bs-target="#modal-music-video">
+              Хор Александрова — «Врагу не сдается наш гордый „Варяг“»
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

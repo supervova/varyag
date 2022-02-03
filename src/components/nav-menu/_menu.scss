@@ -1,0 +1,36 @@
+.menu__item,
+%menu-item {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.menu__item > a,
+%menu-link {
+  @extend %label;
+
+  border-radius: $shape-border-radius-sm;
+  color: $color-ink-2ry;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: .2rem $size-2 .2rem;
+  transition: background $motion-duration-sm;
+  width: 100%;
+  min-height: $size-5;
+
+  &:hover,
+  &:focus {
+    background-color: $color-background-alt;
+    text-decoration: none;
+  }
+
+  .icon {
+    margin-right: $size-2;
+    transform: translateY(-.1rem);
+  }
+
+  > .label {
+    @extend %text-truncate;
+  }
+}

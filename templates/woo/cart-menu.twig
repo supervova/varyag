@@ -1,0 +1,10 @@
+<div class="dropdown">
+  <a class="{{ woo.cart.is_empty ? 'btn is-disable' : 'btn dropdown__toggle' }}" id="cart-button" href="{{ fn('wc_get_cart_url') }}" data-bs-toggle="dropdown" aria-expanded="false" aria-label="{{ fn('pll_e', 'Товары в корзине') }}">
+    {% include "base/icon.twig" with {name: "cart"} %}
+    <span class="badge">({{ woo.cart.get_cart_contents_count }})</span>
+  </a>
+  <div class="dropdown-menu" aria-labelledby="cart-button">
+    {# The product list is actually an existing widget #}
+    {{ fn('the_widget', 'WC_Widget_Cart' ) }}
+  </div>
+</div>

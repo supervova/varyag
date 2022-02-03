@@ -1,0 +1,63 @@
+{% extends "base/base.twig" %}
+
+{% block config %}
+  {{ parent() }}
+
+  {% set post = {
+    is_wp: true,
+    is_modal: true,
+    title: site.name,
+    description: site.description,
+    link: site.url,
+    image: global.logo
+  } %}
+
+{% endblock %}
+
+{# MAIN CONTENT ------------------------------------------------------------- #}
+{% block content %}
+
+  {% include "components/header-legal.twig" with {title: post.title} %}
+
+  {% do action('woocommerce_before_single_product') %}
+  <div class="main__body">
+
+  </div>
+  {% do action('woocommerce_after_single_product') %}
+
+
+ {# HOME.HTML --------------------------------------------------------------- #}
+
+    {# <div class="modal__box"> #}
+      <div class="modal__header">
+        <h2 class="modal__heading" id="modal-product-game-title">Настольная игра «Варяг»</h2>
+        <button class="btn is-close" type="button" data-bs-dismiss="modal" aria-label="Закрыть">[icon symbol='x-mark']</button>
+      </div>
+      <div class="modal__body">
+        <img class="mb-2" src="/wp-content/themes/varyag/images/components/structure-product/game-banner.jpg" alt="Настольная игра «Варяг»" />
+        <p>Главная вещь в нашем магазине — собственно, игра. В ней есть всё, что нужно, чтобы с удовольствием и пользой проводить свободное время. А, если вы захотите разнообразить свой опыт, посмотрите в сопутствующих товарах — наверняка найдёте что-то подходящее.</p>
+      </div>
+      <div class="modal__footer is-sticky">
+        <div class="modal__footer-price">2 490 ₽</div>
+        <div class="modal__buttons">
+          <a class="btn is-outline is-lg" href="#">Добавить к заказу</a>
+          <a class="btn is-primary is-lg" href="#">Купить сразу</a>
+        </div>
+      </div>
+    {# </div> #}
+
+ {# TIMBER ------------------------------------------------------------------ #}
+
+  <article class="product {{ post.class }}" itemscope="itemscope" itemtype="http://schema.org/Product">
+    <meta itemprop="url" content="{{ post.link }}">
+    <div class="product__image">
+      {# {% do action('woocommerce_before_single_product_summary') %} #}
+      <img src="{{ post.thumbnail.src('shop_single') }}" loading="lazy" alt="{{ post.title }}">
+    </div>
+
+    <div class="product__summary">
+      {% do action('woocommerce_single_product_summary') %}
+    </div>
+  </article>
+
+{% endblock %}

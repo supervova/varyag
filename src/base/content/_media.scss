@@ -1,0 +1,60 @@
+@use 'sass:math';
+
+.border,
+%border {
+  border-radius: $shape-border-radius-base;
+
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  max-width: max-content;
+
+  // Border
+  &::after {
+    border-radius: $shape-border-radius-base;
+    box-shadow: inset 0 0 0 1px $color-ink-border;
+    content: '';
+    display: block;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  &:empty {
+    display: none;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// FIGURES & IFRAMES
+// -----------------------------------------------------------------------------
+
+figure,
+iframe {
+  margin-top: 0;
+  margin-bottom: $size-line;
+}
+
+figcaption {
+  color: $color-ink-2ry;
+  padding-top: var(--size-padding-top-base);
+  padding-bottom: var(--size-padding-bottom-base);
+}
+
+// -----------------------------------------------------------------------------
+// IMAGES
+// -----------------------------------------------------------------------------
+
+.img.is-aged {
+  border: $size-1 solid lighten($color-brand-secondary-base, 17%);
+  border-radius: $shape-border-radius-sm;
+  filter: saturate(.32);
+  transition: filter $motion-duration-base $motion-easing-base;
+
+  &:hover{
+    filter: saturate(1);
+  }
+}

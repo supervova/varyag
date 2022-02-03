@@ -1,0 +1,12 @@
+{
+  "name": "Настольная игра «Варяг»",
+  "short_name": "Варяг",
+  "icons": [{
+    "src": "/wp-content/themes/varyag/images/base/graphics/icon.png",
+    "type": "image/png",
+    "sizes": "192x192"
+  }],
+  "start_url": "/",
+  "background_color": "#fff",
+  "theme_color": "#d94141"
+}

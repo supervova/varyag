@@ -1,0 +1,74 @@
+// EYEBROW
+
+// Markup: use (p|a).eyebrow, h1-h2, and p.subhead within header
+// https://go.shr.lc/3782CWT
+
+// <header>
+//   <p class="eyebrow is-title">Chapter 2</p>
+//   <h1>The Battle</h1>
+//   <p class="subhead">Once more unto the breach</p>
+// </header>
+
+// <header>
+//   <a class="hero__eyebrow is-title" href="/chapter-2">Chapter 2</a>
+//   <h1 class="hero__heading">The Battle</h1>
+//   <p class="hero__subhead">Once more unto the breach</p>
+// </header>
+
+// ⚠️ role="doc-subtitle" is not supported by most screen readers
+
+.eyebrow,
+%eyebrow {
+  @extend %label;
+
+  color: var(--color-ink-2ry);
+  margin: 0;
+  padding-top: var(--size-padding-top-small);
+  padding-bottom: var(--size-padding-bottom-small);
+}
+
+.eyebrow.is-title,
+.eyebrow__title {
+  color: var(--color-ink-primary-text);
+  // for a.eyebrow
+  display: block;
+  padding-left: $size-5;
+  position: relative;
+
+  &::before {
+    background: rgba(0, 0, 0, 0) var(--asset-data-image-logo) no-repeat;
+    content: '';
+    position: absolute;
+    left: 0;
+    width: $size-4;
+    height: $size-4;
+  }
+}
+
+.eyebrow.is-title {
+  display: block;
+
+  &::before {
+    top: 0;
+  }
+}
+
+.eyebrow__title {
+  display: inline-block;
+  margin: 0 $size-half;
+
+  &::before {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.eyebrow.is-hanging {
+  @include media-breakpoint-up(lg) {
+    padding-left: 0;
+
+    &::before {
+      left: -$size-5;
+    }
+  }
+}

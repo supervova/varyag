@@ -1,0 +1,59 @@
+.icon {
+  --icon-stroke: #{$color-brand-primary-base};
+  --icon-stroke-width: 2;
+  --icon-fill: #{$color-brand-primary-base};
+
+  display: inline-block;
+
+  // Prevent the icon from shrinking inside a flex container.
+  flex-shrink: 0;
+  opacity: 1;
+  overflow: hidden;
+
+  // Vertical-align: middle does not always align to the visual center, we have
+  // to experiment with transform: translateY()
+  // transform: translateY(0);
+  transition:
+    fill $motion-duration-sm,
+    opacity $motion-duration-sm;
+  vertical-align: middle;
+
+  width: $size-width-height-icon;
+  height: $size-width-height-icon;
+
+  @media #{$size-screen-retina} {
+    --icon-stroke-width: 1.5;
+  }
+}
+
+.icon.is-lg {
+  width: $size-line * 2;
+  height: $size-line * 2;
+}
+
+.icon.is-xl {
+  width: 7.4rem;
+  height: 7.4rem;
+}
+
+.icon-badge {
+  background-color: $color-brand-primary-base;
+  border-radius: $shape-border-radius-pill;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+  width: $size-8;
+  height: $size-8;
+}
+
+.icon-badge > .icon,
+%icon-active {
+  --icon-stroke: #{$color-ink-inverse-base};
+  --icon-fill: transparent;
+}
+
+.icon.is-off {
+  opacity: 0;
+}
+

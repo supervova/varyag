@@ -1,0 +1,58 @@
+@use 'sass:math';
+
+// -----------------------------------------------------------------------------
+// MEDIA OBJECT
+// -----------------------------------------------------------------------------
+
+.media + .media {
+  @include media-breakpoint-down(lg) {
+    margin-top: $size-5;
+  }
+}
+
+.media__link {
+  @extend %standard-focus;
+
+  display: flex;
+  // We used it to make sure that image doesn’t stretch out.
+  align-items: flex-start;
+  position: relative;
+}
+
+.media__img {
+  @extend %border;
+  display: none;
+
+  @include media-breakpoint-up(sm) {
+    border-radius: $shape-border-radius-base;
+    background: $color-brand-primary-base var(--asset-data-image-logo-inverse) no-repeat 50% 50%;
+    display: table;
+    margin-right: var(--size-padding-x-box);
+    margin-bottom: 0;
+    overflow: hidden;
+    width: 9.6rem;
+    height: 10.4rem;
+  }
+}
+
+.media__copy {
+  @include multiline-truncate(4, 2.4rem, .5rem);
+  flex: 1;
+}
+
+.media__heading {
+  font-size: var(--font-size-big);
+  font-weight: 500;
+  line-height: 24 / 21;
+  margin-bottom: -$size-line;
+  padding-top: .5rem;
+  padding-bottom: 1.9rem;
+
+  .media__link:hover & {
+    color: $color-ink-link;
+  }
+}
+
+.media__lead {
+  color: $color-ink-2ry;
+}

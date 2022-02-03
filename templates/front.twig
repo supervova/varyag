@@ -1,0 +1,92 @@
+{% extends "base/base.twig" %}
+
+{% block content %}
+
+  {{ post.content }}
+
+  <section class="modal fade" id="modal-how-to" tabindex="-1" aria-labelledby="modal-how-to-title" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal__box tabs">
+        <div class="modal__header">
+          <h2 class="modal__heading" id="modal-how-to-title">Как играть</h2>
+          <button class="btn is-close" type="button" data-bs-dismiss="modal" aria-label="Закрыть">
+            {% include "base/icon.twig" with {name: "x-mark"} %}
+          </button>
+          <ul class="tabs__tablist nav" role="tablist">
+            <li role="presentation">
+              <button class="tabs__tab active" id="modal-how-to-base-tab" data-bs-toggle="tab" data-bs-target="#modal-how-to-base" type="button" role="tab" aria-controls="modal-how-to-base" aria-selected="true">Основное</button>
+            </li>
+            <li role="presentation">
+              <button class="tabs__tab" id="modal-how-to-move-tab" data-bs-toggle="tab" data-bs-target="#modal-how-to-move" type="button" role="tab" aria-controls="modal-how-to-move" aria-selected="false">Как ходить</button>
+            </li>
+            <li role="presentation">
+              <button class="tabs__tab" id="modal-how-to-attack-tab" data-bs-toggle="tab" data-bs-target="#modal-how-to-attack" type="button" role="tab" aria-controls="modal-how-to-attack" aria-selected="false">Как атаковать</button>
+            </li>
+          </ul>
+        </div>
+        <div class="modal__body">
+          <div class="tabs__pane fade show active" id="modal-how-to-base" role="tabpanel" aria-labelledby="modal-how-to-base-tab">
+            {{ post.meta('modal_how_to').move }}
+          </div>
+
+          <div class="tabs__pane fade" id="modal-how-to-move" role="tabpanel" aria-labelledby="modal-how-to-move-tab">
+            {{ post.meta('modal_how_to').move }}
+          </div>
+
+          <div class="tabs__pane fade" id="modal-how-to-attack" role="tabpanel" aria-labelledby="modal-how-to-attack-tab">
+            {{ post.meta('modal_how_to').attack }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="modal fade" id="modal-kit" tabindex="-1" aria-labelledby="modal-kit-title" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal__box">
+        <div class="modal__header">
+          <h2 class="modal__heading" id="modal-kit-title">В наборе. Некоторые подробности</h2>
+          <button class="btn is-close is-video-item" type="button" data-bs-dismiss="modal" aria-label="Закрыть">
+            {% include "base/icon.twig" with {name: "x-mark"} %}
+          </button>
+        </div>
+        <div class="modal__body">
+          {{ post.meta('modal_game_kit') }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block body_suffix %}
+  {{ parent() }}
+  <script>
+    const slider = tns({
+      'container': '#showcase',
+      'responsive': {
+        '320': {
+          'items': 1,
+        },
+        '768': {
+          'items': 2
+        },
+        '1024': {
+          'items': 3
+        },
+        '1360': {
+          // 'items': 4
+          'disable': true
+        },
+      },
+      // 'mode': 'gallery',
+      'slideBy': 'page',
+      'mouseDrag': true,
+      'swipeAngle': false,
+      'speed': 391,
+      'nav': false,
+      'arrowKeys': true
+    });
+
+  </script>
+{% endblock %}

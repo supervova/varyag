@@ -1,0 +1,21 @@
+.list.is-top {
+  list-style: none;
+  counter-reset: count;
+  padding-left: $size-5;
+}
+
+.list.is-top li {
+  counter-increment: count;
+  position: relative;
+}
+
+.list.is-top li::before {
+  content: counter(count) ". ";
+  color: $color-ink-primary-fill;
+  font-family: $font-family-title;
+  font-size: var(--font-size-title);
+  position: absolute;
+  top: 0;
+  left: -4rem;
+}
+

@@ -1,0 +1,220 @@
+// The customized BS5 component
+
+$modal-content-bg:                      $color-background-base;
+$modal-top-offset:                      $size-8;
+$modal-max-height:                      calc(100vh - $size-8 * 2);
+$modal-transition:                      transform ($motion-duration-base * 3) $motion-easing-base;
+
+$modal-header-padding:                  ($size-line * 2) var(--size-padding-x-container);
+$modal-body-padding:                    0 var(--size-padding-x-container) var(--size-padding-x-container);
+$modal-footer-padding:                  ($size-1 * 2.5 - .1rem) var(--size-padding-x-container) ($size-1 * 2.5);
+
+// Kill the scroll on the body
+.modal-open {
+  overflow: hidden;
+
+  .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+// Container
+.modal {
+  display: none;
+  overflow: hidden;
+  // Prevent Chrome on Windows from adding a focus outline. For details, see
+  // https://github.com/twbs/bootstrap/pull/10951.
+  outline: 0;
+  // BS deliberately don't use `-webkit-overflow-scrolling: touch;` due to a
+  // gnarly iOS Safari bug: https://bugs.webkit.org/show_bug.cgi?id=158342
+  // See also https://github.com/twbs/bootstrap/issues/17695
+
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: $layer-zindex-modal;
+}
+
+// Shell div to position the modal with bottom padding
+.modal-dialog {
+  margin: $size-1;
+  // allow clicks to pass through for custom click handling to close modal
+  pointer-events: none;
+  position: relative;
+  width: auto;
+
+  // When fading in the modal, animate it to slide down
+  .modal.fade & {
+    transition: transform $motion-duration-base $motion-easing-base;
+    transform: translate(0, -$size-line * 2);
+  }
+
+  .modal.show & {
+    transform: none;
+  }
+
+  @include media-breakpoint-up(md) {
+    margin: ($size-line * 2) $size-line;
+  }
+}
+
+.modal-dialog.is-scrollable {
+  height: subtract(100%, $size-2);
+
+  .modal__box {
+    overflow: hidden;
+    position: relative;
+    max-height: 100%;
+  }
+
+  .modal__body,
+  .main__body {
+    overflow-y: auto;
+  }
+}
+
+// Actual modal
+.modal__box {
+  background-clip: padding-box;
+  background-color: $modal-content-bg;
+  border-radius: $shape-border-radius-lg;
+  box-shadow: $layer-box-shadow-z5;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  // Remove focus outline from opened modal
+  outline: 0;
+  // counteract the pointer-events: none; in the .modal-dialog
+  pointer-events: auto;
+  position: relative;
+  // Ensure `.modal__box` extends the full width of the parent `.modal-dialog`
+  width: 100%;
+
+  @include media-breakpoint-up(md) {
+    max-width: $size-width-md;
+  }
+}
+
+// Overlay
+.modal-backdrop {
+  background-color: $color-scrim-base;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: $layer-zindex-scrim;
+
+  // Fade for backdrop
+  &.fade { opacity: 0; }
+  &.show { opacity: $modal-backdrop-opacity; }
+}
+
+// Modal header
+.modal__header,
+.modal__box > .is-modal-src > .main__header {
+  padding: $modal-header-padding;
+}
+
+// Title text within header
+.modal__heading {
+  @extend %h1;
+}
+
+.modal .btn.is-close {
+  background: $color-background-base;
+  position: absolute;
+  top: $size-line;
+  right: $size-line;
+  transition: background-color $motion-duration-sm;
+  z-index: 1;
+
+  &:hover {
+    background-color: $color-background-alt;
+    box-shadow: none;
+    transform: none;
+  }
+
+  // Clickable area: 44x44px
+  &::after {
+    border-radius: 50%;
+    content: '';
+    position: absolute;
+    top: -.6rem;
+    right: -.6rem;
+    bottom: -.6rem;
+    left: -.6rem;
+  }
+}
+
+.modal .btn.is-close.is-video-item {
+  top: 0;
+  right: 0;
+
+  @include media-breakpoint-up(md) {
+    top: -$size-2;
+    right: -$size-2;
+  }
+}
+
+// Modal body
+// Where all modal content resides (sibling of .modal__header and .modal__footer)
+.modal__body,
+.modal__box > .is-modal-src > .main__body {
+  // Enable `flex-grow: 1` so that the body take up as much space as possible
+  // when there should be a fixed height on `.modal-dialog`.
+  flex: 1 1 auto;
+  position: relative;
+  padding: $modal-body-padding;
+}
+
+// Footer (for actions)
+.modal__footer {
+  border-top: $size-border-width solid $color-ink-border;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  // Right align buttons with flex property because text-align doesn't work on flex items
+  justify-content: space-between;
+  padding: $modal-footer-padding;
+}
+
+.modal__footer.is-sticky {
+  background-color: $color-background-acrylic;
+  backdrop-filter: $color-background-acrylic-backdrop;
+  border-radius: 0 0 $shape-border-radius-lg $shape-border-radius-lg;
+  position: sticky;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.modal__buttons .btn {
+  margin-top: $size-2;
+
+  @include media-breakpoint-up(sm) {
+    margin-top: 0;
+    margin-left: $size-2;
+  }
+}
+
+.modal__footer-price {
+  @extend %h2;
+
+  font-weight: 400;
+}
+
+// Measure scrollbar width for padding body during modal show/hide
+.modal-scrollbar-measure {
+  overflow: scroll;
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+}
+
+// Scale up the modal

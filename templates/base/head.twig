@@ -1,0 +1,183 @@
+{#
+  WP Core, Yoast SEO, Polyllang and W3 Total Cache will add via wp_head():
+  - title
+  - description
+  - OG protocol and fb:app_id
+  - Twitter card
+  - canonical link
+  - JSON-LD
+  - regional URLs (hreflangs)
+  - sitemap (?)
+  - RSS
+  - dns-prefetch.
+
+  TODO: Turn on GTM.
+#}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% if global.wp %}
+  {{ function('wp_head') }}
+{% else %}
+
+  <!-- WTF? -->
+  <title>{% if post.title %}{{ post.title|striptags|replace({'&nbsp;': ' ', '&amp;': '&', '&rsquo;': '’'})|escape }} | {% endif %}</title>
+
+  {% if global.full_head %}
+    <link rel="canonical" href="{{ post.link }}">
+    {% if post.hreflang_ru %}
+      <link rel="alternate" href="{{ post.hreflang_ru }}" hreflang="ru">
+    {% endif %}
+    {% if post.hreflang_en %}
+      <link rel="alternate" href="{{ post.hreflang_en }}" hreflang="en">
+    {% endif %}
+    <link rel="sitemap" href="/sitemap.xml" type="application/xml">
+    {% if global.rss %}
+    <link rel="alternate" href="{{ global.rss_url }}" type="application/rss+xml" title="{{ global.rss }}">
+    {% endif %}
+
+    {% if post.excerpt %}
+      <meta name="description" content="{{ post.excerpt }}">
+      <meta property="og:description" content="{{ post.excerpt }}">
+    {% else %}
+      <meta name="description" content="{{ site.description }}">
+      <meta property="og:description" content="{{ site.description }}">
+    {% endif %}
+    <meta property="og:title" content="{{ post.title }}">
+    {% if post.thumbnail.src %}
+      <meta property="og:image" content="{{ post.thumbnail.src }}">
+    {% else %}
+      <meta property="og:image" content="{{ site.url ~ site.theme.link ~ global.image }}">
+    {% endif %}
+    {% if post.link %}
+      <meta property="og:url" content="{{ post.link }}">
+    {% endif %}
+    <meta property="og:locale" content="{{ site.language }}">
+    <meta property="og:site_name" content="{{ site.name }}">
+    {% if post.is_home %}
+      <meta property="og:type" content="website">
+    {% else %}
+      <meta property="og:type" content="article">
+    {% endif %}
+    <meta name="twitter:card" content="summary_large_image">
+
+    {% if global.postal_code %}
+      <script type="application/ld+json">
+        {
+          "@context": "http://schema.org",
+          "@type": "Organization",
+          "name": "{{ site.name }}",
+          "url": "{{ site.url }}",
+          "logo": "{{ site.url ~ site.theme.link ~ global.logo }}",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "{{ global.locality }}",
+            "addressRegion": "{{ global.city }}",
+            "postalCode": "{{ global.postal_code }}",
+            "addressCountry": "{{ global.country }}"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "telephone": "{{ global.phone }}"
+          },
+          "sameAs": [
+            "https://www.facebook.com/{{ global.social.facebook }}",
+            "https://www.instagram.com/{{ global.social.instagram }}",
+            "https://www.linkedin.com/in/{{ global.social.linkedin }}"
+            "https://www.youtube.com/user/{{ global.social.youtube }}",
+            "https://www.twitter.com/{{ global.social.twitter }}"
+          ]
+        }
+      </script>
+    {% endif %}
+  {% endif %}
+
+{% endif %}
+
+
+{% if game.publisher %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Game",
+      "name": "{{ game.name }}",
+      "description": "{{ game.description }}",
+      "audience":{
+        "@type": "PeopleAudience",
+        "suggestedMinAge": "{{ game.minAge }}"
+      },
+      "gameItem": {{ game.items|json_encode() }},
+      "numberOfPlayers": "{{ game.players }}",
+      "offers":{
+        "@type": "Offer",
+        "priceCurrency": "RUB",
+        "price": "{{ game.price }}",
+        "availableAtOrFrom": "{{ game.url }}"
+      },
+      "copyrightHolder": "{{ game.publisher }}"
+    }
+  </script>
+{% endif %}
+
+{% if global.author.summary %}
+  <meta name="author" content="{{ global.author.summary }}">
+{% endif %}
+{% if global.author.twitter %}
+  <meta name="twitter:creator" content="{{ global.author.twitter }}">
+{% endif %}
+
+{# Referrer-Policy #}
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<meta name="apple-mobile-web-app-title" content="{{ site.name }}">
+{% if global.icons.favicon %}
+  {# For Safari which support only one color .svg favicons. 32×32 #}
+  <link rel="icon" href="{{ site.theme.link ~ global.icons.favicon }}" sizes="any">
+{% endif %}
+{% if global.icons.svg %}
+  {# For all other browsers #}
+  <link rel="icon" href="{{ site.theme.link ~ global.icons.svg }}" type="image/svg+xml">
+{% endif %}
+{% if global.icons.apple_touch %}
+  {# Apple touch icon. In most cases, one 192×192px touch icon named icon.png
+  is enough #}
+  <link rel="apple-touch-icon" href="{{ site.theme.link ~ global.icons.apple_touch }}">
+{% endif %}
+{% if global.icons.manifest %}
+  <link rel="manifest" href="{{ site.theme.link ~ global.icons.manifest }}">
+{% endif %}
+<meta name="theme-color" content="{{ global.color }}">
+
+{% if global.facebook_cta_like %}
+  <link rel="preconnect" href="https://staticxx.facebook.com">
+{% endif %}
+
+{% if global.fonts.local %}
+  {% for font in global.fonts.local %}
+    <link rel="preload" href="{{ site.theme.link ~ '/fonts/' ~ font }}.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="{{ site.theme.link ~ '/fonts/' ~ font }}.woff" as="font" type="font/woff" crossorigin="anonymous">
+  {% endfor %}
+{% endif %}
+
+{% if global.fonts.google %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family={{ global.fonts.google }}&display=swap">
+{% endif %}
+
+{% if not post.is_wp %}
+  <link rel="stylesheet" href="{{ site.theme.link ~ '/woocommerce.css?' }}{{ 'now'|date('Y-m-d-H:i') }}">
+  <link rel="stylesheet" href="{{ site.theme.link ~ '/style.css?' }}{{ 'now'|date('Y-m-d-H:i') }}">
+{% endif %}
+
+{% if global.gtm %}
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','{{ global.gtm }}');</script>
+{% endif %}

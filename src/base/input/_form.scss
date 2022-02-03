@@ -1,0 +1,10 @@
+// Fieldset and legend
+.form__legend {
+  @extend %big;
+}
+
+.form__actions {
+  padding-top: var(--size-padding-top-form-actions);
+  padding-bottom: var(--size-padding-bottom-form-actions);
+}
+

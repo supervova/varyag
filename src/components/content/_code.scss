@@ -1,0 +1,41 @@
+code,
+pre {
+  font-family: $font-family-code;
+  font-size: var(--font-size-base);
+}
+
+code {
+  display: inline-block;
+  color: $color-ink-code;
+  word-wrap: break-word;
+  padding: $size-1 $size-2;
+
+  // Streamline the style when inside anchors to avoid broken underline and more
+  a > & {
+    color: inherit;
+  }
+}
+
+pre {
+  // We deliberately don't use `-webkit-overflow-scrolling: touch;` due to a
+  // gnarly iOS Safari bug: https://bugs.webkit.org/show_bug.cgi?id=158342
+  // -webkit-overflow-scrolling: touch;
+
+  // Disable auto-hiding scrollbar in legacy Edge to avoid overlap,
+  // making it impossible to interact with the content
+  -ms-overflow-style: scrollbar;
+  background-color: $color-background-inverse;
+  border-radius: $shape-border-radius-sm;
+  color: $color-ink-inverse-base;
+  display: block;
+  white-space: pre-line;
+  overflow: auto;
+  padding: $size-2;
+  tab-size: 2;
+
+  > code {
+    color: inherit;
+    word-break: normal;
+    padding: 0;
+  }
+}

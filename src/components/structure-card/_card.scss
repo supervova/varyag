@@ -1,0 +1,127 @@
+.cards {
+  display: flex;
+  gap: $size-2;
+
+  .section > & {
+    @include media-breakpoint-up(lg) {
+      max-width: 94.4rem;
+    }
+
+    @include media-breakpoint-up(xl) {
+      max-width: 116.8rem;
+    }
+  }
+}
+
+.card {
+  background-color: $color-background-base;
+  border-radius: $shape-border-radius-base;
+  box-shadow:
+    $layer-box-shadow-contour,
+    $layer-box-shadow-z2;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-align: left;
+  position: relative;
+  padding: $size-line $size-line 1.9rem;
+
+  &:hover {
+    box-shadow:
+      $layer-box-shadow-contour,
+      $layer-box-shadow-z3;
+    text-decoration: none;
+    transform: translateY(-.1rem);
+  }
+
+  &:focus {
+    box-shadow:
+      $layer-box-shadow-focus-outline,
+      $layer-box-shadow-z3;
+    outline: 0;
+  }
+}
+
+.card.is-featured {
+  box-shadow:
+    $layer-box-shadow-contour,
+    $layer-box-shadow-z3;
+
+  &:hover {
+    box-shadow:
+      $layer-box-shadow-contour,
+      $layer-box-shadow-z4;
+  }
+}
+
+.card__wrapper-link {
+  text-decoration: none;
+
+  &::before {
+    border-radius: $shape-border-radius-base;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  &:focus {
+    outline: 0;
+
+    &::before {
+      box-shadow: $layer-box-shadow-focus-outline;
+    }
+  }
+}
+
+.card__image {
+  border-radius: $shape-border-radius-sm;
+  object-fit: cover;
+  width: 100%;
+  height: 21.6rem;
+}
+
+.card__copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 11.3rem;
+}
+
+.card__heading {
+  @include multiline-truncate(2, 3.2rem, 0);
+
+  padding-bottom: 0;
+
+  .hp-space {
+    margin-right: 1.2rem;
+  }
+
+  .hp-quote {
+    margin-left: -1.2rem;
+  }
+}
+
+.card__price {
+  color: $color-ink-2ry;
+  display: flex;
+  align-items: center;
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  line-height: var(--font-line-height-base);
+  padding-top: .1rem;
+}
+
+.card__price-old {
+  color: $color-ink-3ry;
+  display: inline-block;
+  font-size: var(--font-size-small);
+  line-height: var(--font-line-height-small);
+  text-decoration: line-through;
+  margin-left: $size-1;
+}

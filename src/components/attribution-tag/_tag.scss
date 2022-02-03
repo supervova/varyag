@@ -1,0 +1,65 @@
+.tag {
+  @extend %label, %text-truncate;
+
+  --height: #{$size-line};
+
+  background-color: $color-background-alt;
+  border-radius: $shape-border-radius-pill;
+  color: $color-ink-primary-text;
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  font-feature-settings: 'tnum';
+  font-variant: tabular-nums;
+  line-height: var(--height);
+  text-decoration: none;
+  word-break: break-word;
+  margin: 0 $size-1 $size-1 0;
+  padding: 0 ($size-1 * 1.5);
+  outline: none;
+  position: relative;
+  transition: background-color $motion-duration-sm $motion-easing-base;
+  vertical-align: baseline; // or middle
+  max-width: 16rem;
+  min-width: 2rem;
+  height: var(--height);
+
+
+  &[href]:hover {
+    // Override main
+    background-color: darken($color-background-alt, 5%);
+    color: $color-ink-primary-text;
+    text-decoration: none;
+  }
+
+  &:focus {
+    box-shadow: $layer-box-shadow-focus-outline;
+    outline: none;
+  }
+
+  h1 &,
+  h2 &,
+  h3 & {
+    margin-left: $size-1;
+    max-width: none;
+  }
+}
+
+.tag[href]:hover {
+  background: $color-background-primary-light;
+  text-decoration: none;
+}
+
+.tag.is-error {
+  background: $color-background-error;
+  color: $color-ink-inverse-base;
+}
+
+.tag.is-right,
+.tag + .tag {
+  margin-left: $size-1;
+}
+
+.tag.is-bottom {
+  margin-top: $size-1;
+}

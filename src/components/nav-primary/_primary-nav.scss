@@ -1,0 +1,54 @@
+// Use .main { scroll-behavior: smooth; } to animated scroll to a target.
+
+.primary-nav {
+  background: $color-background-alt;
+  border-right: $size-border-width solid $color-ink-border;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  padding: ($size-line * 2) 0;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  bottom: env(safe-area-inset-bottom);
+  transform: translateX(-100%);
+  transition: transform $motion-duration-sm $motion-easing-base;
+  width: $size-width-sm;
+  z-index: $layer-zindex-drawer;
+
+  @include media-breakpoint-up(md) {
+    transform: translateX(0);
+  }
+
+  @include media-breakpoint-up(lg) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.primary-nav__menu {
+  @include media-breakpoint-up(lg) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+  }
+}
+
+.primary-nav__menu li {
+  text-align: left;
+  margin-bottom: .1rem;
+  position: relative;
+}
+
+.primary-nav__menu-link {
+  display: block;
+
+  &:hover {
+    text-decoration: none;
+  }
+}

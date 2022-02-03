@@ -1,0 +1,39 @@
+.products {
+  margin: 0;
+  padding: 0;
+
+  .product {
+    list-style: none;
+    position: relative;
+    margin-bottom: 2em;
+
+    img {
+      display: block;
+    }
+
+    .button {
+      display: block;
+    }
+  }
+}
+
+@media screen and (min-width: 48em) {
+  .products {
+    display: flex;
+
+    .product {
+      margin-right: $size-gutter-lg;
+      width: 33.33%;
+
+      &.last {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .products.columns-1 {
+    .product {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,82 @@
+@use 'sass:math';
+
+// -----------------------------------------------------------------------------
+// CONTAINER
+// -----------------------------------------------------------------------------
+.main {
+  padding-bottom: $size-line * 2;
+
+  // Animated scroll-to-target behavior
+  scroll-behavior: smooth;
+
+  @include media-breakpoint-up(md) {
+    padding-bottom: $size-line * 3;
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding-bottom: $size-line * 4;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// CONTENT
+// -----------------------------------------------------------------------------
+.main__header,
+.main__lead,
+.main__body,
+.main__image,
+.main__table.is-md {
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+  width: 100%;
+
+  &.is-left {
+    margin-left: 0;
+  }
+
+  // @include media-breakpoint-up(md) {
+  //   padding-right: $size-gutter-base / 2;
+  //   padding-left: $size-gutter-base / 2;
+  // }
+}
+
+// #endregion
+
+// -----------------------------------------------------------------------------
+// MODAL SOURCE
+// -----------------------------------------------------------------------------
+// #region
+
+.is-modal-src:not(.modal__box .is-modal-src) {
+  padding-right: $size-1 * 2.5;
+  padding-left: $size-1 * 2.5;
+  padding-bottom: $size-line * 3;
+}
+
+.is-modal-src .main__header,
+.is-modal-src .main__body {
+  @include media-breakpoint-up(md) {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 58.4rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    max-width: 62.4rem;
+  }
+
+  @include media-breakpoint-up(xl) {
+    max-width: 67.2rem;
+  }
+}
+
+.is-modal-src .btn.is-close:not(.modal__box .is-modal-src .btn.is-close) {
+  display: none;
+}
+
+.modal__box .is-modal-src .main__subhead.is-first {
+  margin-top: -$size-line;
+}
+
+// #endregion

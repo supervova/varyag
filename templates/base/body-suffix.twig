@@ -1,0 +1,56 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+
+{% if post.is_wp %}
+  {{ function('wp_footer') }}
+{% else %}
+  <script src="{{ site.theme.link }}/js/vendor/atropos.min.js"></script>
+  <script src="{{ site.theme.link }}/js/main.js?{{ 'now'|date('Y-m-d-H:i') }}"></script>
+{% endif %}
+
+<script>
+  const slider = tns({
+    'container': '#showcase',
+    'responsive': {
+      '320': {
+        'items': 1,
+      },
+      '768': {
+        'items': 2
+      },
+      '1024': {
+        'items': 3
+      },
+      '1360': {
+        // 'items': 4
+        'disable': true
+      },
+    },
+    // 'mode': 'gallery',
+    'slideBy': 'page',
+    'mouseDrag': true,
+    'swipeAngle': false,
+    'speed': 391,
+    'nav': false,
+    'arrowKeys': true
+  });
+</script>
+
+<script>
+  const myAtropos = Atropos({
+    el: '.hero',
+    shadow: false,
+    rotateXMax: 8,
+    rotateYMax: 8,
+  });
+</script>
+
+{% if not post.is_modal and facebook_app_id %}
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.7&appId={{ facebook_app_id }}";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+{% endif %}

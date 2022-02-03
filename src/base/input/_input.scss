@@ -1,0 +1,76 @@
+// Input container
+.input {
+  position: relative;
+  padding-bottom: var(--size-padding-bottom-form-group);
+}
+
+// Multi input fields (e. g. birthday) container
+// .input
+//   .row
+//     .col-sm-6
+//       .input__control
+//     .col-sm-6
+//       .input__control
+
+// or
+
+// .input
+//   .row
+//     .input__control
+//     .input__control
+
+.input > .row {
+  display: flex;
+  gap: $size-1;
+}
+
+// Text input, text area, select
+.input__control {
+  appearance: none;
+  background-clip: padding-box;
+  background-color: $color-background-input;
+  background-image: none;
+  border-radius: $shape-border-radius-sm;
+  border: $size-border-width solid $color-ink-border;
+  color: $color-ink-2ry;
+  display: block;
+  margin: 0;
+  padding-top: var(--size-padding-y-input);
+  padding-right: var(--size-padding-right-input);
+  padding-bottom: var(--size-padding-y-input);
+  padding-left: var(--size-padding-left-input);
+  overflow: visible;
+  transition: border-color $motion-easing-base $motion-duration-sm;
+  width: 100%;
+
+  &:focus {
+    color: $color-ink-base;
+    border-color: $color-brand-primary-base;
+    box-shadow: $layer-box-shadow-focus-outline;
+    outline: 0;
+  }
+
+  // Placeholder
+  &::placeholder {
+    color: $color-ink-3ry;
+    // Override Firefox's unusual default opacity
+    opacity: 1;
+  }
+}
+
+// stylelint-disable selector-no-qualifying-type
+.input__control.is-textarea {
+  // In textarea, we can control the bottom padding only add falce bottom border.
+  // It's tricky enough. But we can easily add whitespace from above
+  padding-top: calc(var(--size-padding-y-input) + .9rem);
+}
+// stylelint-enable selector-no-qualifying-type
+
+.input__hint {
+  color: $color-ink-2ry;
+  display: inline-block;
+  padding-top: var(--size-padding-top-label);
+  position: absolute;
+  top: 0;
+  right: 0;
+}

@@ -1,0 +1,134 @@
+
+// -----------------------------------------------------------------------------
+// BASE
+// -----------------------------------------------------------------------------
+// #region
+
+// Wrapper
+
+/* div || li */.dropdown {
+  position: relative;
+}
+
+// Toggle
+
+.dropdown__toggle {
+  background: rgba(0, 0, 0, 0) var(--asset-data-image-chevron-down) no-repeat right $size-1 center;
+  border-radius: $shape-border-radius-base;
+  display: inline-block;
+  padding-top: .6rem;
+  padding-bottom: .6rem;
+  padding-left: $size-2;
+  padding-right: $size-4;
+  white-space: nowrap;
+
+  &:focus {
+    background-color: $color-neutral-dark-min;
+    outline: none;
+  }
+}
+
+// The dropdown menu
+
+.dropdown-menu,
+.dropdown__menu {
+  @extend %float;
+
+  &.is-open,
+  .dropup.open &,
+  .dropdown.open & {
+    @extend %float-open;
+  }
+}
+
+.dropdown-menu,
+.dropdown__menu,
+.float.is-dropdown {
+  top: 100%;
+  left: 0;
+}
+// #endregion
+
+// -----------------------------------------------------------------------------
+// OVERRIDES
+// -----------------------------------------------------------------------------
+// #region
+
+.dropdown-toggle {
+  --icon: var(--asset-data-image-chevron-down);
+
+  background: rgba(0, 0, 0, 0) var(--icon) no-repeat calc(100% - #{$size-1}) 50%;
+  display: inline-block;
+
+  .caret,
+  .glyphicon {
+    display: none;
+  }
+}
+
+.btn-group.open .dropdown-toggle {
+  background-color: $color-background-alt;
+  box-shadow: none;
+}
+
+.has-compact-dropdown-toggle .dropdown-toggle,
+%compact-dropdown-toggle {
+  background-position: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+// DATEPICKER
+
+.datetimepicker.datetimepicker-dropdown-bottom-right {
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+  max-width: $size-width-sm;
+
+  &::after,
+  &::before {
+    display: none;
+  }
+}
+// #endregion
+
+// -----------------------------------------------------------------------------
+// ITEMS
+// -----------------------------------------------------------------------------
+// #region
+
+.dropdown__menu li,
+.dropdown-menu > li {
+  @extend %menu-item;
+}
+
+
+
+.dropdown__link,
+.dropdown__item > a,
+.dropdown-menu > li > a,
+.dropdown__item > button,
+.dropdown__item.is-option {
+  @extend %menu-link;
+}
+
+// #endregion
+
+// -----------------------------------------------------------------------------
+// POSITION
+// -----------------------------------------------------------------------------
+// #region
+
+// Allow for dropdowns to go bottom up (aka, dropup-menu)
+.dropup .dropdown__menu,
+.dropup .dropdown-menu {
+  @extend %float-dropup;
+}
+
+.dropdown.is-right .dropdown__menu {
+  @extend %float-right;
+}
+
+
+// #endregion

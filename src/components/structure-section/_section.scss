@@ -1,0 +1,120 @@
+@use 'sass:math';
+
+.section {
+  content-visibility: auto;
+  padding-top: ($size-line * 2);
+  padding-bottom: ($size-line * 2);
+}
+
+.section.is-odd,
+.section.is-even {
+  .section__image {
+    order: -1;
+  }
+
+  .grid {
+    @include media-breakpoint-up(lg) {
+      align-items: center;
+    }
+  }
+}
+
+// IMAGE ON RIGHT
+
+.section.is-odd {
+  .section__copy {
+    @include media-breakpoint-up(lg) {
+      grid-column: 1/span 6;
+    }
+
+    @include media-breakpoint-up(xl) {
+      grid-column: 1/span 5;
+    }
+  }
+
+  .section__image {
+    @include media-breakpoint-up(lg) {
+      grid-column: 9/span 6;
+      order: 0;
+    }
+
+    @include media-breakpoint-up(xl) {
+      grid-column: 7/span 6;
+    }
+  }
+
+  .section__image img {
+    @include media-breakpoint-only(lg) {
+      max-width: none;
+    }
+  }
+}
+
+// IMAGE ON LEFT
+
+.section.is-even {
+  .section__copy {
+
+    @include media-breakpoint-up(lg) {
+      grid-column: 7/span 6;
+    }
+
+    @include media-breakpoint-up(xl) {
+      grid-column: 8/span 5;
+    }
+  }
+
+  .section__image {
+
+    order: -1;
+
+    @include media-breakpoint-up(lg) {
+      grid-column: 1/span 6;
+      // image width minus columns span
+      margin-left: calc(-57.6rem + 38.4rem);
+    }
+
+    @include media-breakpoint-up(xl) {
+      margin-left: 0;
+    }
+  }
+
+  .section__image .img {
+    @include media-breakpoint-only(lg) {
+      max-width: none;
+    }
+  }
+}
+
+.section__cta {
+  @extend %list-inline;
+}
+
+.section__cta-link {
+  @extend %btn-base, %btn-ghost;
+
+  padding-right: 0;
+  padding-left: 0;
+
+  &:not(:last-child) {
+    margin-right: $size-2;
+  }
+
+  .icon {
+    --icon-stroke: #{$color-ink-info-fill};
+
+    margin-top: -.2rem;
+    margin-right: $size-1;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// SUBSECTION
+// -----------------------------------------------------------------------------
+
+.section__subsection-heading {
+  @extend %h4;
+
+  margin-top: $size-line;
+  margin-bottom: -$size-line;
+}

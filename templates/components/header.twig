@@ -1,0 +1,63 @@
+<header class="header">
+
+  <h1 class="logo">
+    <a href="/">
+      <span class="logo__tagline">
+        Настольная <span class="nobr">военно-тактическая</span> игра
+        <span class="sr-only"> «Варяг»</span></span>
+      <picture>
+        <source media="(-webkit-min-device-pixel-ratio: 1.5)" srcset="{{ site.theme.link }}/images/base/graphics/logo/logo@2x.png">
+        <img src="{{ site.theme.link }}/images/base/graphics/logo/logo.png" width="126" height="48" alt="Логотип игры «Варяг»">
+      </picture>
+    </a>
+  </h1>
+
+  {% set primary_menu = [
+    {
+      label: '<span>Как играть</span>',
+      anchor: 'section-play',
+      icon: 'game'
+    },
+    {
+      label: '<span class="d-md-none">Комплект</span><span class="d-none d-md-inline">В комплекте</span>',
+      anchor: 'section-kit',
+      icon: 'kit'
+    },
+    {
+      label: 'Дополнения',
+      anchor: 'section-add-ons',
+      class: 'is-add-ons',
+      icon: false
+    },
+    {
+      label: 'Купить',
+      anchor: 'section-products',
+      icon: 'buy',
+      button: true
+    }
+  ] %}
+
+  <nav class="header__menu" aria-label="Основная навигация">
+    <ul role="menubar" aria-hidden="false">
+
+      {% for item in primary_menu %}
+        <li class="header__menu-item{% if item.class %} {{ item.class }}{% endif %}" role="menuitem">
+          <a class="header__{% if item.button %}buy-button{% else %}menu-link{% endif %}" href="{{ '#' ~ item.anchor }}">
+            {% if item.icon %}
+              {% include "base/icon.twig" with {name: item.icon, class: 'is-mobile-only'} %}
+            {% endif %}
+            {{ item.label }}
+          </a>
+        </li>
+      {% endfor %}
+
+      <li class="header__menu-item" role="menuitem">
+        <button class="header__order-button" type="button" data-bs-toggle="modal" data-bs-target="#modal-order" aria-label="Заказ">
+          {% include "base/icon.twig" with {name: 'shopping'} %}
+          <span class="d-md-none">Заказ</span>
+        </button>
+      </li>
+
+    </ul>
+  </nav>
+</header>

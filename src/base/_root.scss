@@ -1,0 +1,148 @@
+// stylelint-disable declaration-colon-space-after, order/order
+
+@use 'sass:math';
+
+:root {
+  // ---------------------------------------------------------------------------
+  // 🧑🏻‍🎨 GRAPHICS
+  // ---------------------------------------------------------------------------
+  // #region
+
+  --asset-data-image-list-bullet:       url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%225%22%20height%3D%227%22%20viewBox%3D%220%200%205%207%22%3E%3Ccircle%20cx%3D%222.5%22%20cy%3D%222.5%22%20r%3D%222.5%22%20fill-opacity%3D%22.38%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E');
+
+  --size-width-height-icon:             #{$size-line};
+
+  --asset-data-image-arrow-right:       url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2248%22%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M3%2024C3%2035.598%2012.402%2045%2024%2045C35.598%2045%2045%2035.598%2045%2024C45%2012.402%2035.598%203%2024%203C12.402%203%203%2012.402%203%2024Z%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M33.3333%2023.9998L24%2014.6665M33.3333%2023.9998H14.6666M33.3333%2023.9998L24%2033.3332%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E');
+  --asset-data-image-chevron-down:      url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M16.5858%2010L12%2014.5858L7.41425%2010%22%20stroke%3D%22black%22%20stroke-opacity%3D%220.38%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E');
+  --asset-data-image-chevron-right:     url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M10%207.41418L14.5858%2012L10%2016.5857%22%20stroke%3D%22black%22%20stroke-opacity%3D%220.38%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E');
+  --asset-data-image-success:           url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23060%22%20fill-rule%3D%22evenodd%22%20d%3D%22M12%2C3%20C16.9705627%2C3%2021%2C7.02943725%2021%2C12%20C21%2C16.9705627%2016.9705627%2C21%2012%2C21%20C7.02943725%2C21%203%2C16.9705627%203%2C12%20C3%2C7.02943725%207.02943725%2C3%2012%2C3%20Z%20M16.0407092%2C7.65887444%20C15.6093228%2C7.38155457%2015.0450266%2C7.47772054%2014.7274961%2C7.86483422%20L14.6587732%2C7.95929533%20L10.8949266%2C13.8119311%20L9.26817292%2C11.8598685%20L9.18188401%2C11.7684924%20C8.81881952%2C11.4292038%208.25140745%2C11.4054648%207.85976724%2C11.7318316%20C7.46812702%2C12.0581985%207.38915668%2C12.6205895%207.65741252%2C13.0388853%20L7.73173036%2C13.1402373%20L10.2317304%2C16.1402373%20L10.2990703%2C16.2136117%20L10.3938389%2C16.2954961%20L10.4841523%2C16.3570803%20L10.587172%2C16.4111347%20L10.7109275%2C16.4574902%20L10.7881244%2C16.4776056%20L10.9036344%2C16.4955926%20L11.0133734%2C16.5000689%20L11.0744808%2C16.4973433%20L11.2113888%2C16.4774445%20L11.3176026%2C16.44852%20L11.3737123%2C16.427665%20L11.4464449%2C16.3950884%20L11.5289847%2C16.3487965%20L11.5855471%2C16.3107058%20L11.5855471%2C16.3107058%20L11.640136%2C16.2682742%20L11.7323615%2C16.1810767%20L11.8094964%2C16.0875177%20L16.3411301%2C9.04081051%20L16.3985346%2C8.93907326%20C16.6188836%2C8.48948574%2016.4720957%2C7.93619432%2016.0407092%2C7.65887444%20Z%22%2F%3E%3C%2Fsvg%3E');
+  --asset-data-image-error:             url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23E60000%22%20d%3D%22M12%2C3%20C7.032%2C3%203%2C7.032%203%2C12%20C3%2C16.968%207.032%2C21%2012%2C21%20C16.968%2C21%2021%2C16.968%2021%2C12%20C21%2C7.032%2016.968%2C3%2012%2C3%20Z%20M13%2C17%20L11%2C17%20L11%2C15%20L13%2C15%20L13%2C17%20Z%20M13%2C13%20L11%2C13%20L11%2C7%20L13%2C7%20L13%2C13%20Z%22%2F%3E%3C%2Fsvg%3E');
+  --asset-data-image-chevron-xxxl:      url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22108%22%20height%3D%22108%22%20viewBox%3D%220%200%20108%20108%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20filter%3D%22url%28%23filter0_ddd%29%22%3E%3Crect%20x%3D%2224%22%20y%3D%2223%22%20width%3D%2260%22%20height%3D%2260%22%20rx%3D%2212%22%20fill%3D%22white%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M48%2067L62%2053L48%2039%22%20stroke%3D%22%234CB37C%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cdefs%3E%3Cfilter%20id%3D%22filter0_ddd%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22108%22%20height%3D%22108%22%20filterUnits%3D%22userSpaceOnUse%22%20color-interpolation-filters%3D%22sRGB%22%3E%3CfeFlood%20flood-opacity%3D%220%22%20result%3D%22BackgroundImageFix%22%2F%3E%3CfeColorMatrix%20in%3D%22SourceAlpha%22%20type%3D%22matrix%22%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%20127%200%22%2F%3E%3CfeOffset%20dy%3D%221%22%2F%3E%3CfeGaussianBlur%20stdDeviation%3D%2212%22%2F%3E%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%220%200%200%200%200.3%200%200%200%200%200.7%200%200%200%200%200.486667%200%200%200%200.21%200%22%2F%3E%3CfeBlend%20mode%3D%22normal%22%20in2%3D%22BackgroundImageFix%22%20result%3D%22effect1_dropShadow%22%2F%3E%3CfeColorMatrix%20in%3D%22SourceAlpha%22%20type%3D%22matrix%22%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%20127%200%22%2F%3E%3CfeOffset%20dy%3D%221%22%2F%3E%3CfeGaussianBlur%20stdDeviation%3D%221.5%22%2F%3E%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%220%200%200%200%200.3%200%200%200%200%200.7%200%200%200%200%200.486667%200%200%200%200.12%200%22%2F%3E%3CfeBlend%20mode%3D%22normal%22%20in2%3D%22effect1_dropShadow%22%20result%3D%22effect2_dropShadow%22%2F%3E%3CfeColorMatrix%20in%3D%22SourceAlpha%22%20type%3D%22matrix%22%20values%3D%220%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%20127%200%22%2F%3E%3CfeMorphology%20radius%3D%221%22%20operator%3D%22dilate%22%20in%3D%22SourceAlpha%22%20result%3D%22effect3_dropShadow%22%2F%3E%3CfeOffset%2F%3E%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%220%200%200%200%200.301961%200%200%200%200%200.698039%200%200%200%200%200.486275%200%200%200%200.08%200%22%2F%3E%3CfeBlend%20mode%3D%22normal%22%20in2%3D%22effect2_dropShadow%22%20result%3D%22effect3_dropShadow%22%2F%3E%3CfeBlend%20mode%3D%22normal%22%20in%3D%22SourceGraphic%22%20in2%3D%22effect3_dropShadow%22%20result%3D%22shape%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3C%2Fsvg%3E');
+  // #endregion
+
+  // ---------------------------------------------------------------------------
+  // 🔠 TYPOGRAPHY AND SPACING
+  // ---------------------------------------------------------------------------
+  // #region
+  --font-scale-factor:                  1.333; // 3:4, perfect fourth
+
+  --font-size-hero-title:               4.1rem;
+  // Keep parentheses to do math using interpolation
+  --font-line-height-hero-title:        #{math.div(48, 41)};
+  --font-weight-hero-title:             normal;
+  --size-padding-top-hero-title:        1.4rem;
+  --size-padding-bottom-hero-title:     1rem;
+
+  --font-size-title:                    3.3rem;
+  --font-line-height-title:             #{math.div(40, 33)};
+  --font-weight-title:                  normal;
+  --size-padding-top-title:             2rem;
+  --size-padding-bottom-title:          1.2rem;
+  --size-margin-top-title-minus:        #{-$size-line};
+
+  --font-size-subhead-h2:               2.7rem;
+  --font-line-height-subhead-h2:        #{math.div(32, 27)};
+  --font-weight-subhead-h2:             300;
+  --size-padding-top-subhead-h2:        2.3rem;
+  --size-padding-bottom-subhead-h2:     1.7rem;
+  --size-margin-top-h2-plus:            #{$size-line};
+
+  --font-size-big:                      2.1rem;
+  --font-line-height-big:               #{math.div(24, 21)};
+  --font-weight-big:                    400;
+  --size-padding-top-big:               .5rem;
+  --size-padding-bottom-big:            1.9rem;
+  --size-margin-top-subhead-plus:       #{$size-line};
+
+  --font-size-base:                     1.7rem;
+  --font-line-height-base:              #{math.div(24, 17)};
+  --size-padding-top-base:              .6rem;
+  --size-padding-bottom-base:           1.8rem;
+
+  --font-size-small:                    1.3rem;
+  --font-line-height-small:             #{math.div(16, 13)};
+  --size-padding-top-small:             1.2rem;
+  --size-padding-bottom-small:          .4rem;
+
+  // Lists
+  --size-padding-bottom-li:             .2rem;
+  --size-padding-bottom-list:           #{$size-2};
+
+  // Components base
+  --size-padding-x-box:                 #{$size-2};
+  --size-padding-x-container:           #{$size-1 * 2.5};
+  --size-space-base:                    #{$size-line};
+
+  // Table
+  --size-margin-top-table:              #{$size-line};
+  --size-margin-bottom-table:           #{$size-line};
+  --size-padding-x-cell:                #{$size-2};
+  --size-padding-y-cell:                1.2rem;
+
+  // Form
+  --size-padding-bottom-form-group:     #{$size-1};
+  --size-padding-y-input:               1.1rem;
+  --size-padding-right-input:           3.9rem;
+  --size-padding-left-input:            1.2rem;
+  --size-padding-top-label:             0;
+  --size-padding-bottom-label:          .4rem;
+  --size-padding-top-form-actions:      0;
+  --size-padding-bottom-form-actions:   #{$size-line};
+  --size-padding-top-select:            0;
+  --size-padding-bottom-select:         0;
+  --size-padding-top-label-option:      1rem;
+
+  @media screen and (min-width: #{map-get($grid-breakpoints, 'md')}) {
+    // --font-scale-factor is the same
+
+    --font-size-hero-title:             6.8rem;
+    // Keep parentheses to do math using interpolation
+    --font-line-height-hero-title:      #{math.div(72, 68)};
+    --size-padding-top-hero-title:      1.9rem;
+    --size-padding-bottom-hero-title:   .5rem;
+
+    --font-size-title:                  4.8rem;
+    --font-line-height-title:           #{math.div(56, 48)};
+    --size-padding-top-title:           .8rem;
+    --size-padding-bottom-title:        .8rem;
+
+    --font-size-subhead-h2:             3.4rem;
+    --font-line-height-subhead-h2:      #{math.div(40, 34)};
+    --size-padding-top-subhead-h2:      1.6rem;
+    --size-padding-bottom-subhead-h2:   1.6rem;
+
+    --font-size-big:                    2.4rem;
+    --font-line-height-big:             #{math.div(32, 24)};
+    --font-weight-big:                  normal;
+    --size-padding-top-big:             0;
+    --size-padding-bottom-big:          1.6rem;
+
+    --font-size-small:                  1.2rem;
+    --font-line-height-small:           #{math.div(16, 12)};
+    --size-padding-top-small:           1.2rem;
+    --size-padding-bottom-small:        2rem;
+
+    --size-padding-x-box:               #{$size-3};
+    --size-padding-x-container:         #{$size-5};
+    --size-space-base:                  #{$size-line * 3};
+
+    --size-padding-bottom-form-group:   #{$size-2};
+  }
+
+  @media screen and (min-width: #{map-get($grid-breakpoints, 'lg')}) {
+    --size-padding-x-box:               #{$size-4};
+    --size-padding-x-container:         #{$size-8};
+  }
+
+  @media screen and (min-width: #{map-get($grid-breakpoints, 'xxxl')}) {
+    --size-padding-x-container:         #{$size-1 * 11};
+  }
+  // #endregion
+}
+
+// -----------------------------------------------------------------------------
+// 🌓 DARK THEME
+// -----------------------------------------------------------------------------
+// #region
+  // @see base.md
+// #endregion

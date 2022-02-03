@@ -1,0 +1,63 @@
+// -----------------------------------------------------------------------------
+// Tabs
+// -----------------------------------------------------------------------------
+
+/* ul.nav */.tabs__tablist { // ul.nav is BS requirement
+  border-bottom: .1rem solid $color-ink-border;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tabs__tablist > li {
+  padding: 0 0 .2rem;
+}
+
+/* button */.tabs__tab {
+  @extend %btn-ghost, %label;
+
+  border-radius: $shape-border-radius-sm;
+  color: $color-ink-3ry;
+  padding: $size-2;
+  position: relative;
+
+  &:hover,
+  &:focus:not(.active) {
+    background-color: $color-neutral-dark-min;
+    text-decoration: none;
+  }
+}
+
+.tabs__tab.active {
+  color: $color-ink-base;
+  cursor: default;
+  pointer-events: none;
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  &::after {
+    border-bottom: 2px solid $color-brand-primary-base;
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -.3rem;
+    left: 0;
+    right: 0;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// PANES
+// -----------------------------------------------------------------------------
+
+/* section */.tabs__pane {
+  display: none;
+}
+
+.tabs__pane.active {
+  display: block;
+}
+

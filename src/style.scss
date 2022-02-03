@@ -1,0 +1,100 @@
+/*!
+Theme Name:   Varyag Game
+Description:  Varyag Game website theme
+Theme URI:    https://varyag-game.ru/
+Author        Vladimir Nikishin (@supervova)
+Author URI:   https://super-mark.ru
+Text Domain:  varyag
+Version:      1.0.0
+*/
+
+// Modifiers are not defined in component files. The unique page styles are
+// written in the corresponded <head> section (less is better). And styles
+// for a group of pages are written in pages folder. E.g. /pages/company.scss
+// .hero.is-company { background: hsl(50, 100%, 50%); }
+
+@import 'base/variables';
+@import 'base/mixins';
+
+// BS & Antropos
+@import './node_modules/bootstrap/scss/functions';
+@import './node_modules/bootstrap/scss/variables';
+@import './node_modules/bootstrap/scss/mixins';
+// @import './node_modules/bootstrap/scss/grid';
+@import './node_modules/bootstrap/scss/mixins';
+@import './node_modules/atropos/atropos';
+
+// Base
+@import 'base/root';
+@import 'base/normalize';
+@import 'base/content/body';
+@import 'base/content/headings';
+@import 'base/graphics/icon';
+@import 'base/graphics/logo/logo';
+@import 'base/content/media';
+@import 'base/shared';
+@import 'base/button';
+@import 'base/input/form';
+@import 'base/input/input';
+@import 'base/input/checks-radio';
+@import 'base/input/label';
+@import 'base/input/select';
+@import 'base/layout/layout';
+
+// Components
+@import 'components/content-main/main';
+@import 'components/content-table/table';
+@import 'components/content/kpi';
+@import 'components/content/lists-advanced';
+@import 'components/disclosure-carousel/tiny-slider';
+@import 'components/disclosure-float/float';
+@import 'components/disclosure-modal/modal';
+@import 'components/disclosure-tabs/tabs';
+@import 'components/feedback-alert/alert';
+@import 'components/input-stepper/stepper';
+@import 'components/nav-primary/primary-nav';
+@import 'components/structure-card/card';
+@import 'components/structure-cart/cart';
+@import 'components/structure-footer/footer';
+@import 'components/structure-header/header';
+@import 'components/structure-hero/hero';
+@import 'components/structure-section/section';
+
+// Pages & plugins
+@import 'plugins/woocommerce/woocommerce';
+
+// Utilities
+@import 'pages/home/home';
+
+// Utilities
+@import 'util/content';
+@import 'util/layout';
+// @import 'util/dev';
+
+
+// BS5 utilities
+@import './node_modules/bootstrap/scss/utilities';
+
+// Only use the utilities we need
+// Add additional classes set as mixins and maps of necessary values
+$utilities: map-get-multiple(
+  $utilities,
+  (
+    'display',
+    'margin-top',
+    'margin-bottom',
+    'margin-x',
+    'padding-x',
+    'padding-top',
+    'padding-bottom',
+    'padding-right',
+    'padding-left'
+    // 'order','flex','flex-direction','flex-grow','flex-shrink','flex-wrap','justify-content','align-items','align-content','align-self','margin', 'margin-y', 'margin-right', 'margin-left','negative-margin','negative-margin-x','negative-margin-y','negative-margin-top','negative-margin-right','negative-margin-bottom','negative-margin-left','padding','padding-x','padding-y',
+  )
+);
+
+@import './node_modules/bootstrap/scss/utilities/api';
+
+// Print
+@import 'base/print';
+

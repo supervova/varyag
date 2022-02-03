@@ -1,0 +1,214 @@
+// Overflow: hidden
+.tns-ovh {
+  padding: 2rem $size-2 ($size-line * 4);
+  overflow-x: hidden;
+  position: relative;
+
+  @include media-breakpoint-up(lg) {
+    margin-right: -$size-2;
+    margin-left: -$size-2;
+  }
+
+  &::after,
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: $size-2;
+    z-index: 1;
+  }
+
+  &::after {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0.5) 66.67%,
+        #fff);
+    right: 0;
+  }
+
+  &::before {
+    background:
+      linear-gradient(
+        90deg,
+        #fff,
+        rgba(255, 255, 255, .5) 33.33%,
+        rgba(255, 255, 255, 0)
+      );
+    left: 0;
+  }
+}
+
+// Buttons
+
+.tns-outer {
+  position: relative;
+}
+
+.tns-outer [aria-controls],
+.tns-outer [data-action] {
+  cursor: pointer;
+  z-index: 2;
+}
+
+.tns-outer [data-controls='next'],
+.tns-outer [data-controls='prev'] {
+  @extend %btn;
+
+  // Hide label
+  -webkit-text-size-adjust: none;
+  color: transparent;
+  font-size: 0;
+
+  background: $color-brand-secondary-base var(--asset-data-image-arrow-right) no-repeat 50%;
+  border-radius: 50%;
+  box-shadow: $layer-box-shadow-z3;
+  position: absolute;
+  bottom: 0;
+  width: $size-7;
+  height: $size-7;
+
+  @include media-breakpoint-up(md) {
+    top: 17.6rem;
+    bottom: auto;
+  }
+}
+
+// NEXT
+.tns-outer [data-controls='next'] {
+  right: 0;
+
+  @include media-breakpoint-up(md) {
+    right: -$size-line;
+  }
+
+  @include media-breakpoint-up(xl) {
+    right: -$size-8;
+  }
+}
+
+// PREV
+.tns-outer [data-controls='prev'] {
+  left: 0;
+  transform: scaleX(-1);
+
+  @include media-breakpoint-up(md) {
+    left: -$size-line;
+  }
+
+  @include media-breakpoint-up(xl) {
+    left: -$size-8;
+  }
+}
+
+// Other
+
+.tns-outer [hidden] {
+  display: none;
+}
+
+.tns-slider {
+  transition: all 0;
+}
+
+.tns-horizontal.tns-subpixel {
+  display: flex;
+  white-space: nowrap;
+}
+
+.tns-horizontal.tns-subpixel > .tns-item {
+  display: inline-block;
+  vertical-align: top;
+  white-space: normal;
+}
+
+.tns-horizontal.tns-carousel.tns-no-subpixel > .tns-item {
+  margin-right: -100%;
+}
+
+.tns-no-calc {
+  position: relative;
+}
+
+.tns-gallery {
+  position: relative;
+  left: 0;
+  min-height: 1px;
+}
+
+.tns-gallery > .tns-item {
+  position: absolute;
+  left: -100%;
+  transition: transform 0, opacity 0;
+}
+
+.tns-gallery > .tns-slide-active {
+  position: relative;
+  left: auto;
+}
+
+.tns-gallery > .tns-moving {
+  transition: all $motion-duration-base $motion-easing-base;
+}
+
+.tns-autowidth {
+  display: inline-block;
+}
+
+.tns-ah {
+  transition: height 0;
+}
+
+.tns-visually-hidden {
+  position: absolute;
+  left: -10000em;
+}
+
+.tns-transparent {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.tns-fadeIn {
+  opacity: 1;
+  z-index: 0;
+}
+
+.tns-normal,
+.tns-fadeOut {
+  opacity: 0;
+  z-index: -1;
+}
+
+.tns-vpfix {
+  white-space: nowrap;
+}
+
+.tns-vpfix > div,
+.tns-vpfix > li {
+  display: inline-block;
+}
+
+.tns-t-subp2 {
+  margin: 0 auto;
+  width: 310px;
+  position: relative;
+  height: 10px;
+  overflow: hidden;
+}
+
+.tns-t-ct {
+  display: flex;
+  position: absolute;
+  right: 0;
+  width: 2333.3333333%;
+  width: calc(100% * 70 / 3);
+}
+
+.tns-t-ct > div {
+  width: 1.4285714%;
+  width: calc(100% / 70);
+  height: 10px;
+}

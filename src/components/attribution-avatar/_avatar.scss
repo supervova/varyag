@@ -1,0 +1,35 @@
+// AVATAR
+.avatar,
+%avatar {
+  @extend %border;
+
+  background-color: var(--color-background-alt);
+  background-image: var(--asset-data-image-picture);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  padding: 0 !important;
+  overflow: hidden;
+
+  img {
+    margin: 0;
+    object-fit: cover;
+    width: 100%;
+    min-height: 100%;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// SMALL
+// -----------------------------------------------------------------------------
+
+.avatar.is-small,
+%avatar-sm {
+  width: $size-5;
+  height: $size-5;
+
+  &,
+  img,
+  &::after {
+    border-radius: 50%;
+  }
+}

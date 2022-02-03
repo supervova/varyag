@@ -1,0 +1,41 @@
+{% extends "base/base.twig" %}
+
+{% block content %}
+
+  {{ post.content }}
+
+
+
+{% endblock %}
+
+{% block body_suffix %}
+  {{ parent() }}
+  <script>
+    const slider = tns({
+      'container': '#showcase',
+      'responsive': {
+        '320': {
+          'items': 1,
+        },
+        '768': {
+          'items': 2
+        },
+        '1024': {
+          'items': 3
+        },
+        '1360': {
+          // 'items': 4
+          'disable': true
+        },
+      },
+      // 'mode': 'gallery',
+      'slideBy': 'page',
+      'mouseDrag': true,
+      'swipeAngle': false,
+      'speed': 391,
+      'nav': false,
+      'arrowKeys': true
+    });
+
+  </script>
+{% endblock %}

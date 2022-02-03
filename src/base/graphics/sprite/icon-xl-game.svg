@@ -1,0 +1,11 @@
+<svg width="74" height="74" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M61 5H13C8.58172 5 5 8.58172 5 13V61C5 65.4183 8.58172 69 13 69H61C65.4183 69 69 65.4183 69 61V13C69 8.58172 65.4183 5 61 5Z" stroke="var(--icon-stroke)" stroke-width="var(--icon-stroke-width)" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M23 25C24.1046 25 25 24.1046 25 23C25 21.8954 24.1046 21 23 21C21.8954 21 21 21.8954 21 23C21 24.1046 21.8954 25 23 25Z" fill="var(--icon-fill)"/>
+<path d="M51 25C52.1046 25 53 24.1046 53 23C53 21.8954 52.1046 21 51 21C49.8954 21 49 21.8954 49 23C49 24.1046 49.8954 25 51 25Z" fill="var(--icon-fill)"/>
+<path d="M51 53C52.1046 53 53 52.1046 53 51C53 49.8954 52.1046 49 51 49C49.8954 49 49 49.8954 49 51C49 52.1046 49.8954 53 51 53Z" fill="var(--icon-fill)"/>
+<path d="M23 53C24.1046 53 25 52.1046 25 51C25 49.8954 24.1046 49 23 49C21.8954 49 21 49.8954 21 51C21 52.1046 21.8954 53 23 53Z" fill="var(--icon-fill)"/>
+<path d="M23 25C24.1046 25 25 24.1046 25 23C25 21.8954 24.1046 21 23 21C21.8954 21 21 21.8954 21 23C21 24.1046 21.8954 25 23 25Z" stroke="var(--icon-stroke)" stroke-width="var(--icon-stroke-width)" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M51 25C52.1046 25 53 24.1046 53 23C53 21.8954 52.1046 21 51 21C49.8954 21 49 21.8954 49 23C49 24.1046 49.8954 25 51 25Z" stroke="var(--icon-stroke)" stroke-width="var(--icon-stroke-width)" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M51 53C52.1046 53 53 52.1046 53 51C53 49.8954 52.1046 49 51 49C49.8954 49 49 49.8954 49 51C49 52.1046 49.8954 53 51 53Z" stroke="var(--icon-stroke)" stroke-width="var(--icon-stroke-width)" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M23 53C24.1046 53 25 52.1046 25 51C25 49.8954 24.1046 49 23 49C21.8954 49 21 49.8954 21 51C21 52.1046 21.8954 53 23 53Z" stroke="var(--icon-stroke)" stroke-width="var(--icon-stroke-width)" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
